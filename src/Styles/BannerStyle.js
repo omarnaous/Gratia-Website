@@ -8,12 +8,12 @@ export const BannerContainer = styled.div`
   }
   border-radius: 10px;
   margin-top: 5vh;
-  margin-left: 12.5vw;
-  margin-right: 12.5vw;
+  margin-left: 0.8vw;
+  margin-right: 0.8vw;
   object-fit: fill;
   transition: transform 0.4s ease; // Slow down the transition
-  box-shadow: 0px 0px 5px rgba(128, 128, 128, 0.2); // Grey shadow with reduced intensity
   &:hover {
+    border-radius: 10px;
     transform: scale(1.03); // Remove single quotes and fix the syntax
   }
 

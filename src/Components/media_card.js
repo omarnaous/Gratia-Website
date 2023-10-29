@@ -8,6 +8,8 @@ const Card = styled.div`
   margin: 10px;
   border-radius: 10px;
   height: auto;
+  min-height: 40vh;
+  max-height: 40vh;
   width: ${(props) => props.width};
   cursor: pointer;
   transition: transform 0.4s ease;
@@ -15,14 +17,15 @@ const Card = styled.div`
   overflow: hidden;
 
   img{
-    height: 100%;
+    min-height: 40vh;
+    max-height: 40vh;
   }
   &:hover {
     transform: scale(1.03);
   }
 
   @media only screen and (min-width: 320px) and (max-width: 479px){ 
-    width: 90%;
+    width: 95%;
     height: 50vh;
    }
 
@@ -36,7 +39,7 @@ const CardMedia = styled.img`
   object-fit: cover;
   height: ${(props) => props.height};
   width: 100%;
-  border-radius: 10px;
+  border-radius: 5px;
 `;
 
 const ProductCard = ({ height, width, image }) => {

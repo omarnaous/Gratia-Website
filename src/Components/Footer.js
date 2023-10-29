@@ -4,7 +4,7 @@ import MaterialButton from './MaterialButton';
 import { Link } from 'react-router-dom';
 
 const FooterContainer = styled.footer`
-  background-color: #f0f0f0; /* Light grey background color */
+  background-color: white; /* Light grey background color */
   color: #666;
   padding-bottom: 10px;
   padding-top: 10px;

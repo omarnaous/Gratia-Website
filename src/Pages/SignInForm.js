@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Dialog, DialogContent, Button, Typography, Box } from '@mui/material';
+import { Dialog, DialogContent, Typography } from '@mui/material';
 import Navbar from '../Components/Navbar';
 import { auth } from '../firebase';
-import { createUserWithEmailAndPassword,signInWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import styled from 'styled-components'; // Import styled-components
 import ReusableTextField from '../Components/CustomTextfield'; // Import your custom ReusableTextField component
 
@@ -12,13 +12,30 @@ const FormContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  height: 40vh;
-  width: 60vw;
-  max-width: 100%; /* Adjust the width as needed */
+  /* height: 40vh; */
+  width: calc(100%);
   padding-left: 5vw;
   padding-right: 5vw;
   padding-top: 5vh;
   padding-bottom: 5vh;
+`;
+
+// Create a styled component for the custom button
+const CustomButton = styled.button`
+  background-color: black;
+  color: white;
+  margin-top: 5px;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 20px;
+  width: 50%;
+  font-size: 1.3rem;
+
+  &:hover {
+    background-color: #333; // Change the background color on hover
+  }
 `;
 
 const SignInForm = ({ open, onClose, isSignIn }) => {
@@ -36,7 +53,7 @@ const SignInForm = ({ open, onClose, isSignIn }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-  
+
     try {
       if (isSignIn) {
         await signInWithEmailAndPassword(auth, email, password);
@@ -49,28 +66,22 @@ const SignInForm = ({ open, onClose, isSignIn }) => {
       }
       setError(null);
       console.log(`Email: ${email}, Password: ${password}`);
-  
+
       // Close the dialog after successful sign-up/sign-in
       onClose();
     } catch (error) {
       setError(error.message);
-  
+
       // Show an alert on error
       alert(error.message);
     }
-  };;
-
-  const buttonStyle = {
-    backgroundColor: 'black',
-    color: 'white',
-    marginTop: '5px',
   };
 
   return (
     <div>
       <FormContainer>
         <Typography variant="h4" align="center" gutterBottom>
-          {isSignIn ? "Sign In":"Register"}
+          {isSignIn ? 'Sign In' : 'Register'}
         </Typography>
         <ReusableTextField
           id="email"
@@ -89,15 +100,10 @@ const SignInForm = ({ open, onClose, isSignIn }) => {
           onChange={handlePasswordChange}
           value={password}
         />
-        <Button
-          type="submit"
-          variant="contained"
-          sx={buttonStyle}
-          fullWidth
-          onClick={handleSubmit}
-        >
+        {/* Replace the Button component with the custom button */}
+        <CustomButton type="submit" onClick={handleSubmit}>
           Sign In
-        </Button>
+        </CustomButton>
       </FormContainer>
     </div>
   );

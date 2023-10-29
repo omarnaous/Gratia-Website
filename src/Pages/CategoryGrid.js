@@ -27,14 +27,14 @@ export default function CategoryGrid() {
     display: flex;
     justify-content: center; /* Horizontally center content */
     align-items: center;
-    margin-top: 3%;
+    margin-top: 1%;
   `;
 
   const ContentBox = styled.div`
     width: 100%;
     margin-top: 1vh;
-    margin-left: 11.4vw;
-    margin-right: 11.4vw;
+    /* margin-left: 10.2vw;
+    margin-right: 10.2vw; */
     display: flex;
     flex-direction: row;
     justify-content: center;

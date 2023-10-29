@@ -6,7 +6,6 @@ import Navbar from '../Components/Navbar';
 import styled from 'styled-components';
 import CustomizedAccordions from '../Components/Accordion';
 import MaterialButton from '../Components/MaterialButton';
-import ProductCard from '../Components/media_card';
 import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css';
 import { doc, setDoc } from 'firebase/firestore';
@@ -57,22 +56,16 @@ const ProductDetail = () => {
     justify-content: space-between;
     align-items: center;
     flex-direction: row;
-    height: 80vh;
-    margin-left: 13%;
-    margin-right: 10%;
+    min-height: 80vh; /* Use min-height to keep centering consistent */
     overflow: hidden;
+    margin-right: 11vw;
+    margin-left: 11vw;
 
-    @media only screen and (min-width: 320px) and (max-width: 479px){
+    @media only screen and (max-width: 479px) {
       flex-direction: column;
-      height: 100vh;
-      width: 100%;
+      align-items: center;
       margin: 0;
-      overflow: none;
-      }
-
-    @media only screen and (min-width: 480px) and (max-width: 767px){  }
-
-    @media only screen and (min-width: 768px) and (max-width: 991px){  }
+    }
   `;
 
   const Title = styled.h1`
@@ -88,29 +81,55 @@ const ProductDetail = () => {
   `;
 
   const Column = styled.div`
-  overflow: hidden;
-  margin-left: 10px;
-    width: 100%;
+    overflow: hidden;
+    margin-left: 10px;
+    /* width: 100%; */
     display: flex;
     flex-direction: column;
     align-items: start;
     justify-content: start;
+
     @media only screen and (min-width: 320px) and (max-width: 479px){ 
       width: 90%;
       margin: 0px;
-     }
-
-    @media only screen and (min-width: 480px) and (max-width: 767px){  }
+    }
   `;
 
   const ImageGallery = styled.div`
     display: flex;
-    margin-bottom: 10px;
     flex-wrap: wrap;
-    padding: 10px;
-    padding-left: 0px;
     gap: 10px;
+    max-width: 500px; 
     overflow: hidden;
+    margin-top: 20px;
+    margin-bottom: 3vh;
+    margin-left: 1vw;
+
+    @media only screen and (max-width: 479px) {
+      width: 100%;
+    }
+  `;
+
+  const BigImage = styled.img`
+    height: 60vh;
+    width: 30vw;
+    object-fit: cover;
+    border-radius: 10px;
+    margin: 10px;
+    margin-left: 5vw;
+    box-shadow: 0px 0px 10px rgba(128, 128, 128, 0.2);
+    transition: transform 0.4s ease;
+    overflow: hidden;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    @media only screen and (min-width: 320px) and (max-width: 479px){
+      width: 90%;
+      height: 50vh;
+      margin-top: 20px;
+    }
   `;
 
   const SmallImage = styled.img`
@@ -121,13 +140,15 @@ const ProductDetail = () => {
     box-shadow: 0px 0px 10px rgba(128, 128, 128, 0.2);
     transition: transform 0.4s ease;
     overflow: hidden;
-    @media only screen and (min-width: 320px) and (max-width: 479px){ 
-      margin: 0px;
-     }
-    
 
     &:hover {
       transform: scale(1.1);
+    }
+
+      max-width: 1000px;
+      @media only screen and (min-width: 320px) and (max-width: 479px){
+        width: 80px;
+        height: 80px;
     }
   `;
 
@@ -136,10 +157,22 @@ const ProductDetail = () => {
     align-items: center;
     justify-content: center;
     flex-direction: row;
+    padding: 15px;
     gap: 20px;
     width: auto;
     margin-left: 10px;
     margin-top: 10px;
+    overflow: none;
+    border-radius: 10px;
+    margin: 10px;
+    box-shadow: 0px 0px 10px rgba(128, 128, 128, 0.2);
+    transition: transform 0.4s ease;
+    overflow: hidden;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+    
   `;
 
   if (!productsData.length) {
@@ -164,33 +197,35 @@ const ProductDetail = () => {
   };
 
   async function addtoCart() {
-    const docRef = doc(db, 'cart', productsData[indexParam].productName);
+    const docRef = doc(db, 'cart', productsData[indexParam].productName + auth.currentUser.uid);
+    setDoc(docRef, {
+      id: auth.currentUser.uid,
+      product: productsData[indexParam],
+    });
+  }
+  async function addtoWish() {
+    const docRef = doc(db, 'whishlist', productsData[indexParam].productName + auth.currentUser.uid);
     setDoc(docRef, {
       id: auth.currentUser.uid,
       product: productsData[indexParam],
     });
   }
 
+  const MaterialButtonContainer = styled.div`
+  margin: 1vw;
+  width: 25vw;
+  @media only screen and (max-width: 479px) {
+    width: 100%; /* Set a different width for mobile devices */
+  }
+`;
+
   return (
     <div>
       <Navbar />
       <Container>
-      <ProductCard width="35vw" image={selectedImage} />
         <Column>
-          <ImageGallery>
-            {imageUrls.map((imageUrl, index) => (
-              <SmallImage
-                key={index}
-                src={imageUrl}
-                alt={`Image ${index + 1}`}
-                onClick={() => handleSmallImageClick(index)}
-              />
-            ))}
-          </ImageGallery>
           <Title>{productsData[indexParam].productName}</Title>
           <SubTitle>USD ${productsData[indexParam].productPrice}</SubTitle>
-          <CustomizedAccordions title={'Description'} paragraph={productsData[indexParam].description} />
-          <MaterialButton onClick={addtoCart} name="ADD TO CART" />
           <IconContainer>
             <a href={generateWhatsAppShareLink()} target="_blank" rel="noopener noreferrer">
               <FontAwesomeIcon icon={faWhatsapp} size="2x" style={{ color: 'green' }} />
@@ -202,6 +237,27 @@ const ProductDetail = () => {
               <InstagramIcon style={{ color: '#e4405f' }} fontSize="large" />
             </a>
           </IconContainer>
+        </Column>
+        <BigImage src={selectedImage}></BigImage>
+        <Column>
+          <ImageGallery>
+            {imageUrls.map((imageUrl, index) => (
+              <SmallImage
+                key={index}
+                src={imageUrl}
+                alt={`Image ${index + 1}`}
+                onClick={() => handleSmallImageClick(index)}
+              />
+            ))}
+          </ImageGallery>
+          
+          <MaterialButtonContainer>
+          <CustomizedAccordions title={'Description'} paragraph={productsData[indexParam].description} />
+
+          <MaterialButton onClick={addtoCart} name="ADD TO CART" width="100%" radius="0px" />
+          <MaterialButton onClick={addtoWish} name="ADD TO WISHLIST" width="100%" radius="0px" />
+
+          </MaterialButtonContainer>
         </Column>
       </Container>
       {lightboxOpen && (

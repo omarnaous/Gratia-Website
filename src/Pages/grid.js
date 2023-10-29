@@ -39,8 +39,8 @@ export default function ResponsiveProductsGrid() {
 
 const ContentBox = styled.div`
 width: 100%;
-margin-left: 12vw;
-margin-right: 12vw;
+margin-left: 10.3vw;
+margin-right: 10.3vw;
 display: flex;
 flex-direction: row;
 justify-content: center;
@@ -68,6 +68,8 @@ align-items: center;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    font-size: 1.5rem;
+
   `;
 
   const CardBox = styled(Box)`

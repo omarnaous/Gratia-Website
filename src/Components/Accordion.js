@@ -9,10 +9,10 @@ import Typography from '@mui/material/Typography';
 const Accordion = styled((props) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
 ))(({ theme }) => ({
-  width: '330px', // Set your desired width here
+  width: '100%', // Set your desired width here
   borderRadius: '5px', // Set your desired border radius here
   border: `1px solid ${theme.palette.divider}`,
-  margin:'10px',
+  // margin:'10px',
   '&:not(:last-child)': {
     borderBottom: 0,
   },

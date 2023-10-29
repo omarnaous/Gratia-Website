@@ -9,6 +9,7 @@ import EditProducts from './Pages/EditProducts';
 import AddCategory from './Pages/AddCategory';
 import ResponsiveProductsGrid from './Pages/grid';
 import EditBanner from './Pages/EditBanner';
+import CheckOutPage from './Pages/Checkout.js';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
       <Route path="/AddCategory" element={<AddCategory />} />
       <Route path="/ProductsPage" element={<ResponsiveProductsGrid />} />
       <Route path="/Banner" element={<EditBanner />} />
+      <Route path="/Check" element={<CheckOutPage />} />
 
     </Routes>
   );

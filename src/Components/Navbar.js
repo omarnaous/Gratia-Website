@@ -14,6 +14,7 @@ import Cart from '../Pages/cart';
 import PersonIcon from '@mui/icons-material/Person';
 import MenuMobile from './MenuMobile';
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
+import Wishlist from '../Pages/Wishlist';
 
 const Navbar = ({ scrollToSection }) => {
   const [user, setUser] = useState(null);
@@ -40,33 +41,45 @@ const Navbar = ({ scrollToSection }) => {
   const [dialogOpen, setDialogOpen] = useState(false);
 
   const Container = styled.div`
-    margin-top: 3vh;
-    min-height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    padding: 0px;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1;
-    position: sticky;
-    top: 0;
-    a {
-      font-size: 16px;
-      margin-left: 3px;
-    }
+  margin-top: 3vh;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Adjusted to evenly distribute space between items */
+  padding: 0px;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  position: sticky;
+  top: 0;
 
-    @media only screen and (min-width: 320px) and (max-width: 479px){
-        margin: 2vh;
-       justify-content:space-between
-       }
+  /* Added flex properties */
+  & > * {
+    flex-grow:1; /* Items will take up available space */
+    text-align: center; /* Optional: center align text */
+  }
 
-    @media only screen and (min-width: 480px) and (max-width: 767px){ 
-      justify-content:space-between
-     }
+  a {
+    font-size: 16px;
+    margin-left: 3px;
+  }
+  /* background-color: red; */
 
-  `;
+  @media only screen and (min-width: 320px) and (max-width: 479px) {
+    & > * {
+    flex-grow:0; /* Items will take up available space */
+    text-align: center; /* Optional: center align text */
+  }
+    margin: 2vh;
+    /* justify-content: space-between; */ /* Commented out to let items take more space */
+  }
+
+  @media only screen and (min-width: 480px) and (max-width: 767px) {
+    /* justify-content: space-between; */ /* Commented out to let items take more space */
+  }
+`;
+
 
 
 
@@ -144,6 +157,7 @@ const Navbar = ({ scrollToSection }) => {
   };
 
   const [isCartDialogOpen, setIsCartDialogOpen] = useState(false);
+  const [isWishDialogOpen, setWhishDialogOpen] = useState(false);
 
 
 const handleWhatsAppLinkClick = () => {
@@ -175,7 +189,7 @@ const handleWhatsAppLinkClick = () => {
             </a>
           </Link>
           <Link>
-            <a onClick={() => setIsCartDialogOpen(true)}>
+            <a onClick={() => setWhishDialogOpen(true)}>
               <FontAwesomeIcon style={{marginRight: '5px' }} icon={faHeart} />
               {"| "}
             </a>
@@ -195,6 +209,10 @@ const handleWhatsAppLinkClick = () => {
         <Dialog open={isCartDialogOpen} onClose={() => setIsCartDialogOpen(false)}>
           {/* Pass a function to close the dialog */}
           <Cart onClose={() => setIsCartDialogOpen(false)} />
+        </Dialog>
+        <Dialog open={isWishDialogOpen} onClose={() => setWhishDialogOpen(false)}>
+          {/* Pass a function to close the dialog */}
+          <Wishlist onClose={() => setWhishDialogOpen(false)} />
         </Dialog>
         {user ? (
           <p> {" LOGGED IN"}</p>

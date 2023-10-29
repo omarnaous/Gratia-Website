@@ -57,7 +57,7 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div>
+    <div style={{marginLeft:"10vw", marginRight:"10vw"}}>
       {!showContent ? (
         <FullScreenImage>
           <Title>GRATIA</Title>
