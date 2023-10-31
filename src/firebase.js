@@ -10,13 +10,13 @@ import { getStorage } from "firebase/storage";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyCOefYn7D_GPZ7QO1n8Zky64DSYijDQPQk",
-  authDomain: "gratiaonline-6cbfe.firebaseapp.com",
-  projectId: "gratiaonline-6cbfe",
-  storageBucket: "gratiaonline-6cbfe.appspot.com",
-  messagingSenderId: "1068735427415",
-  appId: "1:1068735427415:web:29f88d35cd7ddf3eb94412",
-  measurementId: "G-NTH4CK4YRD"
+  apiKey: "AIzaSyBxvDK4mN-jMtS42KW2wRXG8ZqnfwI4ghA",
+  authDomain: "event-planner-7c085.firebaseapp.com",
+  projectId: "event-planner-7c085",
+  storageBucket: "event-planner-7c085.appspot.com",
+  messagingSenderId: "221260137627",
+  appId: "1:221260137627:web:84620bf490387c4a28323e",
+  measurementId: "G-1Q490T6E42"
 };
 
 

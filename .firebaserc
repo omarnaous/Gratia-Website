@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "gratiaonline-6cbfe"
-  }
+    "default": "event-planner-7c085",
+    "build": "event-planner-7c085"
+  },
+  "targets": {},
+  "etags": {}
 }

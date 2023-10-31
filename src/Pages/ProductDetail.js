@@ -57,9 +57,11 @@ const ProductDetail = () => {
     align-items: center;
     flex-direction: row;
     min-height: 80vh; /* Use min-height to keep centering consistent */
+    /* width: 82vw; */
     overflow: hidden;
-    margin-right: 11vw;
-    margin-left: 11vw;
+    /* padding: 20px; */
+    margin-left: 3vw;
+    margin-right: 3vw;
 
     @media only screen and (max-width: 479px) {
       flex-direction: column;
@@ -83,15 +85,18 @@ const ProductDetail = () => {
   const Column = styled.div`
     overflow: hidden;
     margin-left: 10px;
-    /* width: 100%; */
+    width: 60%;
     display: flex;
     flex-direction: column;
     align-items: start;
     justify-content: start;
+    margin-left: 5vw;
+
 
     @media only screen and (min-width: 320px) and (max-width: 479px){ 
       width: 90%;
       margin: 0px;
+      margin-left: 0vw;
     }
   `;
 
@@ -106,27 +111,28 @@ const ProductDetail = () => {
     margin-left: 1vw;
 
     @media only screen and (max-width: 479px) {
+      margin-left: 0vw;
       width: 100%;
     }
   `;
 
   const BigImage = styled.img`
-    height: 60vh;
-    width: 30vw;
+    height: 65vh;
+    width: 40vw;
     object-fit: cover;
     border-radius: 10px;
     margin: 10px;
-    margin-left: 5vw;
     box-shadow: 0px 0px 10px rgba(128, 128, 128, 0.2);
     transition: transform 0.4s ease;
     overflow: hidden;
+    margin-right: 5vw;
 
     &:hover {
       transform: scale(1.1);
     }
 
     @media only screen and (min-width: 320px) and (max-width: 479px){
-      width: 90%;
+      width: 82%;
       height: 50vh;
       margin-top: 20px;
     }
@@ -212,7 +218,7 @@ const ProductDetail = () => {
   }
 
   const MaterialButtonContainer = styled.div`
-  margin: 1vw;
+  margin-left: 1.5vw;
   width: 25vw;
   @media only screen and (max-width: 479px) {
     width: 100%; /* Set a different width for mobile devices */
@@ -222,6 +228,7 @@ const ProductDetail = () => {
   return (
     <div>
       <Navbar />
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
       <Container>
         <Column>
           <Title>{productsData[indexParam].productName}</Title>
@@ -239,7 +246,8 @@ const ProductDetail = () => {
           </IconContainer>
         </Column>
         <BigImage src={selectedImage}></BigImage>
-        <Column>
+        <Column style={{marginLeft:"0vw"}}>
+
           <ImageGallery>
             {imageUrls.map((imageUrl, index) => (
               <SmallImage
@@ -254,12 +262,14 @@ const ProductDetail = () => {
           <MaterialButtonContainer>
           <CustomizedAccordions title={'Description'} paragraph={productsData[indexParam].description} />
 
-          <MaterialButton onClick={addtoCart} name="ADD TO CART" width="100%" radius="0px" />
-          <MaterialButton onClick={addtoWish} name="ADD TO WISHLIST" width="100%" radius="0px" />
+          <MaterialButton onClick={addtoCart} name="ADD TO CART" width="100%" radius="5px" />
+          <MaterialButton onClick={addtoWish} name="ADD TO WISHLIST" width="100%" radius="5px" />
 
           </MaterialButtonContainer>
         </Column>
       </Container>
+      </div>
+      
       {lightboxOpen && (
         <Lightbox
           mainSrc={imageUrls[lightboxIndex]}

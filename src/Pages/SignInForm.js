@@ -3,24 +3,32 @@ import { Dialog, DialogContent, Typography } from '@mui/material';
 import Navbar from '../Components/Navbar';
 import { auth } from '../firebase';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
-import styled from 'styled-components'; // Import styled-components
-import ReusableTextField from '../Components/CustomTextfield'; // Import your custom ReusableTextField component
+import styled from 'styled-components';
+import {
+  Button,
+  Paper,
+  TextField,
+  Box,
+  CircularProgress,
+} from '@mui/material';
 
-// Create a styled component for the form container
 const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  /* height: 40vh; */
   width: calc(100%);
   padding-left: 5vw;
   padding-right: 5vw;
-  padding-top: 5vh;
+  padding-top: 2vh;
   padding-bottom: 5vh;
 `;
 
-// Create a styled component for the custom button
+const textFieldStyle = {
+  marginBottom: '16px',
+  width: '300px',
+};
+
 const CustomButton = styled.button`
   background-color: black;
   color: white;
@@ -34,7 +42,7 @@ const CustomButton = styled.button`
   font-size: 1.3rem;
 
   &:hover {
-    background-color: #333; // Change the background color on hover
+    background-color: #333;
   }
 `;
 
@@ -42,6 +50,7 @@ const SignInForm = ({ open, onClose, isSignIn }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -52,57 +61,75 @@ const SignInForm = ({ open, onClose, isSignIn }) => {
   };
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
+  event.preventDefault();
 
-    try {
-      if (isSignIn) {
-        await signInWithEmailAndPassword(auth, email, password);
-        const successMessage = `You have signed in successfully as ${email}`;
-        window.alert(successMessage);
-      } else {
-        await createUserWithEmailAndPassword(auth, email, password);
-        const successMessage = `You have registered successfully as ${email}`;
-        window.alert(successMessage);
-      }
-      setError(null);
-      console.log(`Email: ${email}, Password: ${password}`);
+  try {
+    setLoading(true); // Start loading
 
-      // Close the dialog after successful sign-up/sign-in
-      onClose();
-    } catch (error) {
-      setError(error.message);
-
-      // Show an alert on error
-      alert(error.message);
+    if (isSignIn) {
+      await signInWithEmailAndPassword(auth, email, password);
+      const successMessage = `You have signed in successfully as ${email}`;
+      onclose();
+      window.alert(successMessage);
+    } else {
+      await createUserWithEmailAndPassword(auth, email, password);
+      const successMessage = `You have registered successfully as ${email}`;
+      window.alert(successMessage);
     }
-  };
+    setError(null);
+    console.log(`Email: ${email}, Password: ${password}`);
+
+    // Close the dialog after successful sign-up/sign-in
+    onClose();
+  } catch (error) {
+    setError(error.message);
+  } finally {
+    setLoading(false); // Stop loading, whether it was a success or an error
+  }
+};
+
 
   return (
     <div>
       <FormContainer>
-        <Typography variant="h4" align="center" gutterBottom>
-          {isSignIn ? 'Sign In' : 'Register'}
-        </Typography>
-        <ReusableTextField
-          id="email"
+        <h2
+          style={{
+            fontSize: '2rem',
+            margin: '10px',
+            marginBottom: '2vh',
+          }}
+        >
+          SIGN IN
+        </h2>
+        <TextField
           label="Email"
-          color="black"
+          id="filled-basic"
+          variant="filled"
           fullWidth
-          onChange={handleEmailChange}
+          style={textFieldStyle}
           value={email}
+          onChange={handleEmailChange}
+          required
         />
-        <ReusableTextField
-          id="password"
+
+        <TextField
           label="Password"
-          color="black"
-          fullWidth
+          id="filled-basic"
           type="password"
-          onChange={handlePasswordChange}
+          variant="filled"
+          fullWidth
+          style={textFieldStyle}
           value={password}
+          onChange={handlePasswordChange}
+          required
         />
-        {/* Replace the Button component with the custom button */}
-        <CustomButton type="submit" onClick={handleSubmit}>
-          Sign In
+
+        <CustomButton type="submit" onClick={handleSubmit} disabled={loading}>
+          {loading ? (
+            <CircularProgress size={24} color="inherit" />
+          ) : (
+            'Sign In'
+          )}
         </CustomButton>
       </FormContainer>
     </div>

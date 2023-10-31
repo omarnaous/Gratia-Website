@@ -1,20 +1,15 @@
 import React, { useState } from 'react';
 import {
   Button,
-  Typography,
-  Container,
   Paper,
   TextField,
-  Select,
-  MenuItem,
-  FormControl,
-  InputLabel,
   Box,
   CircularProgress,
 } from '@mui/material';
 import Navbar from '../Components/Navbar';
 import { db } from '../firebase';
 import { doc, setDoc } from 'firebase/firestore';
+import styled from 'styled-components';
 import {
   getStorage,
   ref,
@@ -35,13 +30,11 @@ const AddCategory = () => {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    minHeight: '90vh',
   };
 
   const cardStyle = {
     padding: '16px',
     borderRadius: '8px',
-    backgroundColor: '#f0f0f0',
     boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
     maxWidth: '400px',
   };
@@ -64,6 +57,7 @@ const AddCategory = () => {
 
   const buttonStyle = {
     marginBottom: '16px',
+    backgroundColor: 'black',
   };
 
   const imagePreviewStyle = {
@@ -133,74 +127,82 @@ const AddCategory = () => {
     setResetImagesVisible(false);
   };
 
+  const CustomButton = styled.button`
+  background-color: black;
+  color: white;
+  margin-top: 5px;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 20px;
+  width: 50%;
+  font-size: 1.3rem;
+  width: 100%;
+
+  &:hover {
+    background-color: #333;
+  }
+`;
+
   return (
     <div>
-      <Navbar></Navbar>
       <div style={containerStyle}>
-        <Container maxWidth="xs">
-          <form>
-            <Typography variant="h4" align="center" gutterBottom>
-              ADD CATEGORY
-            </Typography>
-            <Paper elevation={3} style={cardStyle}>
-              <TextField
-                label="Category Name"
+        <form>
+          <h1 style={{ textAlign: 'center', margin: "10px" }}>Add Category</h1>
+
+          <Paper elevation={3} style={cardStyle}>
+            <TextField
+              label="Category Name"
+              id="filled-basic"
+              variant="filled"
+              fullWidth
+              style={textFieldStyle}
+              value={productName}
+              onChange={(e) => setCategoryName(e.target.value)}
+              required
+            />
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleImageChange}
+              style={{ marginBottom: '16px' }}
+            />
+
+
+            <div style={imagesContainerStyle}>
+              {imagePreviews.map((preview, index) => (
+                <img
+                  key={index}
+                  src={preview}
+                  alt={`Image ${index + 1}`}
+                  style={imagePreviewStyle}
+                />
+              ))}
+            </div>
+
+            {resetImagesVisible && (
+              <Button
                 variant="outlined"
+                color="primary"
                 fullWidth
-                style={textFieldStyle}
-                value={productName}
-                onChange={(e) => setCategoryName(e.target.value)}
-                required
-              />
-              <input
-                type="file"
-                accept="image/*"
-                onChange={handleImageChange}
+                onClick={handleImageReset}
                 style={buttonStyle}
-              />
+              >
+                <h3 style={{ color: "white" }}>Reset Images</h3>
+              </Button>
+            )}
 
 
-              <div style={imagesContainerStyle}>
-                {imagePreviews.map((preview, index) => (
-                  <img
-                    key={index}
-                    src={preview}
-                    alt={`Image ${index + 1}`}
-                    style={imagePreviewStyle}
-                  />
-                ))}
-              </div>
-
-              {resetImagesVisible && (
-                <Button
-                  variant="outlined"
-                  color="secondary"
-                  fullWidth
-                  onClick={handleImageReset}
-                  style={buttonStyle}
-                >
-                  Reset Images
-                </Button>
-              )}
-
+            <CustomButton type="submit" onClick={handleAddProduct} disabled={isLoading}>
               {isLoading ? (
-                <Box display="flex" justifyContent="center">
-                  <CircularProgress />
-                </Box>
+                <CircularProgress size={24} color="inherit" />
               ) : (
-                <Button
-                  variant="contained"
-                  color="primary"
-                  fullWidth
-                  onClick={handleAddProduct}
-                  style={buttonStyle}
-                >
-                  Add CATEGORY
-                </Button>
+                'Add Product'
               )}
-            </Paper>
-          </form>
-        </Container>
+            </CustomButton>
+          </Paper>
+        </form>
       </div>
     </div>
   );

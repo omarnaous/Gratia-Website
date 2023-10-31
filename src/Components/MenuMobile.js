@@ -10,6 +10,7 @@ import { Dialog } from '@mui/material';
 import SignInForm from '../Pages/SignInForm';
 import Cart from '../Pages/cart';
 import { auth } from '../firebase';
+import AdminPanel from '../Pages/adminpanel';
 
 
 const MenuContainer = styled.div`
@@ -85,6 +86,7 @@ const MenuMobile = ({ onClose }) => {
   const [isCartDialogOpen, setIsCartDialogOpen] = useState(false);
   const [isSignInDialogOpen, setIsSignInDialogOpen] = useState(false);
   const [isRegisterDialogOpen, setIsRegisterDialogOpen] = useState(false);
+  const [isAdminDialog, setIsAdminDialog] = useState(false);
 
   const closeDialogs = () => {
     setIsSignInDialogOpen(false);
@@ -101,6 +103,13 @@ const MenuMobile = ({ onClose }) => {
   };
 
   const currentUser = auth.currentUser;
+
+  const openAdminDialog = () => {
+    setIsAdminDialog(true);
+  };
+  const closeAdminDialog = () => {
+    setIsAdminDialog(false);
+  };
 
 
 
@@ -141,6 +150,13 @@ const MenuMobile = ({ onClose }) => {
               </MenuItemContainer>
             </>
           )}
+          <MenuItemContainer onClick={openAdminDialog}>
+              <AccountCircleIcon />
+              <MenuItemInfo>
+                <MenuItemName>Account</MenuItemName>
+                <MenuItemPrice>{currentUser.username}</MenuItemPrice>
+              </MenuItemInfo>
+            </MenuItemContainer>
           <MenuItemContainer onClick={() => setIsCartDialogOpen(true)}>
             <ShoppingCartIcon />
             <MenuItemInfo>
@@ -185,6 +201,10 @@ const MenuMobile = ({ onClose }) => {
       <Dialog open={isRegisterDialogOpen} onClose={closeDialogs}>
         {/* Register Form */}
         <SignInForm onClose={closeDialogs} isSignIn={false} />
+      </Dialog>
+      <Dialog open={isAdminDialog} onClose={closeAdminDialog}>
+        {/* Register Form */}
+        <AdminPanel onClose={closeAdminDialog}  />
       </Dialog>
     </>
   );

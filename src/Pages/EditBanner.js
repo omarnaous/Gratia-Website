@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   getStorage,
   ref,
@@ -6,94 +6,158 @@ import {
   getDownloadURL,
 } from 'firebase/storage';
 import { db } from '../firebase';
+import styled from 'styled-components';
+import { Button, CircularProgress, Box } from '@mui/material';
 import {
-  collection,
-  addDoc,
   doc,
   setDoc,
-} from 'firebase/firestore'; // Import Firestore functions for adding data
+} from 'firebase/firestore'; // Import Firestore functions for updating data
 
 import Navbar from '../Components/Navbar';
 import ImageSelectionPage from '../Components/ImageSelection';
 
-const AnotherPage = () => {
-  const [categoryData, setCategoryData] = useState([]);
-  const [selectedImages, setSelectedImages] = useState([]);
-  const [imagePreviews, setImagePreviews] = useState([]);
+const MyBannerEdit = () => {
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   // Initialize Firebase Storage
   const storage = getStorage();
 
+  const buttonStyle = {
+    marginBottom: '16px',
+    backgroundColor: 'black',
+  };
+
+
+  const imagesContainerStyle = {
+    display: 'flex',
+    flexWrap: 'wrap',
+    gap: '16px',
+  }
+
+  const imageStyle = {
+    width: '100px',
+    height: '100px',
+    marginTop: '10px', // Add margin to separate the image from the button
+  };
 
   // Function to handle image selection
   const handleImageChange = (e) => {
-    const selectedImages = Array.from(e.target.files);
-    setSelectedImages(selectedImages);
-
-    const previews = selectedImages.map((image) =>
-      URL.createObjectURL(image)
-    );
-    setImagePreviews(previews);
+    const image = e.target.files[0];
+    if (image) {
+      setSelectedImage(image);
+      setImagePreview(URL.createObjectURL(image));
+    }
   };
 
   // Function to handle image reset
   const handleImageReset = () => {
-    setSelectedImages([]);
-    setImagePreviews([]);
+    setSelectedImage(null);
+    setImagePreview(null);
   };
 
-  // Function to upload images to Firebase Storage and return their download URLs
-  const uploadImagesToStorage = async () => {
-    const uploadedImageUrls = "";
-
-    for (const image of selectedImages) {
+  // Function to upload the selected image to Firebase Storage
+  const uploadImageToStorage = async () => {
+    if (selectedImage) {
       try {
-        const storageRef = ref(storage, `images/${image.name}`);
-        const snapshot = await uploadBytesResumable(storageRef, image);
+        setIsLoading(true);
+        const storageRef = ref(storage, `images/${selectedImage.name}`);
+        const snapshot = await uploadBytesResumable(storageRef, selectedImage);
         const downloadURL = await getDownloadURL(snapshot.ref);
-        uploadedImageUrls = downloadURL
+        setIsLoading(false);
+        return downloadURL;
       } catch (error) {
         console.error('Error uploading image:', error);
+        setIsLoading(false);
+        return null;
       }
     }
-
-    return uploadedImageUrls;
+    return null;
   };
 
-  // Function to set image URLs to Firestore
-  const setImageUrlsToFirestore = async (uploadedUrls) => {
-    try {
-      const productRef = doc(db, 'Banner', "Banner"); // Assuming you have a "products" collection
-      await setDoc(
-        productRef,
-        {
-          imageUrls: uploadedUrls, // Replace with your Firestore field name
-        },
-        { merge: true }
-      );
-    } catch (error) {
-      console.error('Error setting image URLs to Firestore:', error);
+  // Function to update the banner with the new image URL
+  const updateBanner = async (imageURL) => {
+    if (imageURL) {
+      try {
+        const bannerRef = doc(db, 'Banner', "Banner"); // Assuming you have a "Banner" document
+        await setDoc(
+          bannerRef,
+          {
+            url: imageURL, // Replace with your Firestore field name
+          },
+          { merge: true }
+        );
+        alert('Banner edited successfully!');
+      } catch (error) {
+        console.error('Error updating banner:', error);
+      }
     }
   };
 
-  // Handle image upload and set URLs to Firestore
+  // Handle image upload and banner update
   const handleImageUpload = async () => {
-    const uploadedUrls = await uploadImagesToStorage();
-    setImageUrlsToFirestore(uploadedUrls);
+    const imageURL = await uploadImageToStorage();
+    updateBanner(imageURL);
   };
 
+  const CustomButton = styled.button`
+    background-color: black;
+    color: white;
+    margin-top: 5px;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 20px;
+    width: 50%;
+    font-size: 1.3rem;
+    width: 100%;
+
+    &:hover {
+      background-color: #333;
+    }
+  `;
+
+  
+
   return (
-    <div>
-      <Navbar></Navbar>
+    <div style={{ margin: "20px", width:"300px" }}>
+      <h1 style={{ textAlign: 'center', margin: "10px" }}>Edit Banner</h1>
+
       <ImageSelectionPage
-        categoryData={categoryData}
-        handleImageChange={handleImageChange}
-        handleImageReset={handleImageReset}
+      // Include relevant props if needed
       />
-      {/* Add a button or any UI element to trigger image upload */}
-      <button onClick={handleImageUpload}>Upload Images</button>
+
+      <input
+        type="file"
+        accept="image/*"
+        onChange={handleImageChange}
+        style={{
+          marginBottom: "20px"
+        }}
+      />
+
+      {selectedImage && (
+        <div style={imagesContainerStyle}>
+           <img
+          src={imagePreview}
+          alt="Selected Image"
+          style={imageStyle}
+        />
+        </div>
+       
+      )}
+
+      <CustomButton type="submit" onClick={handleImageUpload} disabled={isLoading}>
+        {isLoading ? (
+          <CircularProgress size={24} color="inherit" />
+        ) : (
+          'Add Product'
+        )}
+      </CustomButton>
     </div>
   );
 };
 
-export default AnotherPage;
+export default MyBannerEdit;

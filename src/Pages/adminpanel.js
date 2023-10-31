@@ -1,25 +1,19 @@
 import React from 'react';
-import { Button, Typography, Container, Box, Paper } from '@mui/material';
-import Navbar from '../Components/Navbar';
 import { Link } from 'react-router-dom';
 import { auth } from '../firebase';
-import { signOut } from 'firebase/auth';
 import { useState } from 'react';
 import ImageSelectionPage from '../Components/ImageSelection';
+import { Button, Typography, Container, Paper, Dialog, DialogTitle, DialogContent, DialogActions } from '@mui/material';
+import Addproducts from './Addproducts';
+import AddCategory from './AddCategory';
+import MyBannerEdit from './EditBanner';
 
 const AdminPanel = ({ onClose }) => {
-    const formContainerStyle = {
+    const buttonContainerStyle = {
+        width: '100%',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'center',
-        height: '60vh',
-    };
-
-    const buttonContainerStyle = {
-        display: 'flex',
-        flexDirection: 'column', // Change to 'column'
-        alignItems: 'center', // Center the buttons horizontally
         padding: '16px',
         borderRadius: '8px',
         backgroundColor: '#f0f0f0',
@@ -27,68 +21,107 @@ const AdminPanel = ({ onClose }) => {
     };
 
     const buttonStyle = {
-        width: '20vw', // Set button width to 100% for full width
-        marginBottom: '8px', // Add margin between buttons
+        width: '300px', // Set a fixed width for all buttons
+        marginBottom: '15px',
+        backgroundColor: '#fff',
+        border: '1px solid black',
+    };
+
+    const typographyStyle = {
+        color: 'black',
+        fontSize: '1.2rem',
     };
 
     const handleSignOut = () => {
-        auth.signOut(); // Sign out when the button is clicked
+        auth.signOut();
         onClose();
     };
 
-    const [isDialogOpen, setIsDialogOpen] = useState(false); // State to manage dialog open/close
+    const [isAddProductsOpen, setIsAddProductsOpen] = useState(false);
 
     const handleOpenDialog = () => {
-        setIsDialogOpen(true); // Open the dialog when this function is called
+        setIsAddProductsOpen(true);
     };
 
-    const handleCloseDialog = () => {
-        setIsDialogOpen(false); // Close the dialog when this function is called
+    const hadnleCloseAddProducts = () => {
+        setIsAddProductsOpen(false);
     };
+
+    const [isAddCAtegory, setisAddCategory] = useState(false);
+
+    const handleCategoryDialog = () => {
+        setisAddCategory(true);
+    };
+
+    const handleCategoryClose = () => {
+        setisAddCategory(false);
+    };
+
+    const [isEditBanner, setEditBanner] = useState(false);
+
+    const handleEditBannerOpen = () => {
+        setEditBanner(true);
+    };
+
+    const handleEditBannerClose = () => {
+        setEditBanner(false);
+    };
+
 
     return (
         <div>
-            <div style={formContainerStyle}>
-                <Container maxWidth="xs">
+            <div style={buttonContainerStyle}>
+                <div maxWidth="xs">
                     <form>
-                        <Typography variant="h4" align="center" gutterBottom>
-                            Admin Panel
-                        </Typography>
+                        <h1 style={{ textAlign: 'center', margin: "10px" }}>Admin Panel</h1>
                         <Paper elevation={3} style={buttonContainerStyle}>
-                            <Link to="/AddP">
-                                <Button variant="outlined" style={buttonStyle}>
-                                    ADD NEW PRODUCTS
+                            <Button variant="outlined" style={buttonStyle} onClick={handleOpenDialog}>
+                                <Typography style={typographyStyle}>ADD NEW PRODUCTS</Typography>
+                            </Button>
+                            <Button variant="outlined" style={buttonStyle} onClick={handleCategoryDialog}>
+                                <Typography style={typographyStyle}>ADD NEW CATEGORY</Typography>
+                            </Button>
+                                <Button variant="outlined" style={buttonStyle} onClick={handleEditBannerOpen}>
+                                    <Typography style={typographyStyle}>EDIT BANNER IMAGE</Typography>
                                 </Button>
-                            </Link>
-                            <Link to="/AddCategory">
-                                <Button variant="outlined" style={buttonStyle}>
-                                    ADD NEW CATEGORY
-                                </Button>
-                            </Link>
-                            <Link >
-                                <Button variant="outlined" style={buttonStyle} onClick={handleOpenDialog}>
-                                    EDIT BANNER
-                                </Button>
-                            </Link>
-
-                            {/* Render the ImageSelectionPage with the open state and close function */}
-                            <ImageSelectionPage open={isDialogOpen} handleClose={handleCloseDialog} />
                             <Link to="/EditProducts">
                                 <Button variant="outlined" style={buttonStyle}>
-                                    EDIT PRODUCTS
+                                    <Typography style={typographyStyle}>EDIT PRODUCTS</Typography>
                                 </Button>
                             </Link>
-
                             <Button variant="outlined" color="info" style={buttonStyle}>
-                                ORDERS
+                                <Typography style={typographyStyle}>ORDERS</Typography>
                             </Button>
                             <Button variant="outlined" color="info" style={buttonStyle} onClick={handleSignOut}>
-                                SIGN OUT
+                                <Typography style={typographyStyle}>SIGN OUT</Typography>
                             </Button>
-
                         </Paper>
+                        <Dialog open={isAddProductsOpen} onClose={hadnleCloseAddProducts}>
+                            <Addproducts />
+                            <DialogActions>
+                                <Button onClick={hadnleCloseAddProducts} color="primary">
+                                    Close
+                                </Button>
+                            </DialogActions>
+                        </Dialog>
+                        <Dialog open={isAddCAtegory} onClose={handleCategoryClose}>
+                            <AddCategory />
+                            <DialogActions>
+                                <Button onClick={handleCategoryClose} color="primary">
+                                    Close
+                                </Button>
+                            </DialogActions>
+                        </Dialog>
+                        <Dialog open={isEditBanner} onClose={handleEditBannerClose}>
+                            <MyBannerEdit />
+                            <DialogActions>
+                                <Button onClick={handleEditBannerClose} color="primary">
+                                    Close
+                                </Button>
+                            </DialogActions>
+                        </Dialog>
                     </form>
-                </Container>
+                </div>
             </div>
         </div>
     );

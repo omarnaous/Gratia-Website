@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { collection, getDocs } from "firebase/firestore";
+import styled from 'styled-components';
 
 import {
   Button,
@@ -34,19 +35,38 @@ const Addproducts = () => {
   const [resetImagesVisible, setResetImagesVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+
+  const CustomButton = styled.button`
+  background-color: black;
+  color: white;
+  margin-top: 5px;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 20px;
+  width: 50%;
+  font-size: 1.3rem;
+  width: 100%;
+
+  &:hover {
+    background-color: #333;
+  }
+`;
+
   const storage = getStorage();
 
   const containerStyle = {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    minHeight: '90vh',
+    // minHeight: '90vh',
   };
 
   const cardStyle = {
     padding: '16px',
     borderRadius: '8px',
-    backgroundColor: '#f0f0f0',
+    // backgroundColor: '#f0f0f0',
     boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
     maxWidth: '400px',
   };
@@ -69,6 +89,7 @@ const Addproducts = () => {
 
   const buttonStyle = {
     marginBottom: '16px',
+    backgroundColor: 'black',
   };
 
   const imagePreviewStyle = {
@@ -83,10 +104,10 @@ const Addproducts = () => {
       alert('Please fill in all required fields.');
       return;
     }
-
+  
     try {
       setIsLoading(true);
-
+  
       const uploadedImageUrls = [];
       for (const image of images) {
         const storageRef = ref(storage, `images/${image.name}`);
@@ -94,7 +115,7 @@ const Addproducts = () => {
         const downloadURL = await getDownloadURL(snapshot.ref);
         uploadedImageUrls.push(downloadURL);
       }
-
+  
       const productRef = doc(db, 'products', productName);
       await setDoc(
         productRef,
@@ -107,7 +128,8 @@ const Addproducts = () => {
         },
         { merge: true }
       );
-
+  
+      // Reset the input fields and images after successfully adding the product
       setProductName('');
       setProductPrice('');
       setCategory('');
@@ -117,6 +139,9 @@ const Addproducts = () => {
       setResetImagesVisible(false);
       setIsLoading(false);
       alert('Product added successfully!');
+      
+      // Reset the images
+      handleImageReset();
     } catch (error) {
       console.error('Error adding product:', error);
       alert(
@@ -172,114 +197,113 @@ const Addproducts = () => {
 
   return (
     <div>
-      <Navbar></Navbar>
       <div style={containerStyle}>
-        <Container maxWidth="xs">
-          <form>
-            <Typography variant="h4" align="center" gutterBottom>
-              ADD PRODUCTS
-            </Typography>
-            <Paper elevation={3} style={cardStyle}>
-              <TextField
-                label="Product Name"
-                variant="outlined"
-                fullWidth
-                style={textFieldStyle}
-                value={productName}
-                onChange={(e) => setProductName(e.target.value)}
+        <form>
+          <Typography variant="h5" style={{ marginTop: "10px" }} align="center" gutterBottom>
+            ADD PRODUCTS
+          </Typography>
+          <Paper elevation={0} style={cardStyle}>
+            <TextField
+              label="Product Name"
+              id="filled-basic"
+              variant="filled"
+              fullWidth
+              style={textFieldStyle}
+              value={productName}
+              onChange={(e) => setProductName(e.target.value)}
+              required
+            />
+
+            <TextField
+              label="Product Price"
+              id="filled-basic"
+              variant="filled"
+              fullWidth
+              style={textFieldStyle}
+              value={productPrice}
+              onChange={(e) => setProductPrice(e.target.value)}
+              required
+            />
+
+            <FormControl variant="outlined" style={selectStyle}>
+              <InputLabel>Category</InputLabel>
+              <Select
+                label="Category"
+                id="filled-basic"
+                variant="filled"
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
                 required
-              />
+              >
+                {
+                  categoryData.map((category, index) => (
+                    <MenuItem key={index} value={category}>
+                      {category.categoryName}
+                    </MenuItem>
+                  ))
+                }
 
-              <TextField
-                label="Product Price"
+              </Select>
+            </FormControl>
+
+            <TextField
+              label="Description"
+              id="filled-basic"
+              variant="filled"
+              fullWidth
+              multiline
+              rows={4}
+              style={textFieldStyle}
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              required
+            />
+            <input
+              type="file"
+              accept="image/*"
+              multiple
+              onChange={handleImageChange}
+              style={{
+                marginTop:"10px",
+                marginBottom: "10px"
+              }}
+            />
+
+            <div style={imagesContainerStyle}>
+              {imagePreviews.map((preview, index) => (
+                <img
+                  key={index}
+                  src={preview}
+                  alt={`Image ${index + 1}`}
+                  style={imagePreviewStyle}
+                />
+              ))}
+            </div>
+
+            {resetImagesVisible && (
+              <Button
                 variant="outlined"
+                color="primary"
                 fullWidth
-                style={textFieldStyle}
-                value={productPrice}
-                onChange={(e) => setProductPrice(e.target.value)}
-                required
-              />
-
-              <FormControl variant="outlined" style={selectStyle}>
-                <InputLabel>Category</InputLabel>
-                <Select
-                  label="Category"
-                  value={category}
-                  onChange={(e) => setCategory(e.target.value)}
-                  required
-                >
-                  {
-                    categoryData.map((category,index) => (
-                      <MenuItem key={index} value={category}>
-                        {category.categoryName}
-                      </MenuItem>
-                    ))
-                  }
-
-                </Select>
-              </FormControl>
-
-              <TextField
-                label="Description"
-                variant="outlined"
-                fullWidth
-                multiline
-                rows={4}
-                style={textFieldStyle}
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                required
-              />
-
-              <input
-                type="file"
-                accept="image/*"
-                multiple
-                onChange={handleImageChange}
+                onClick={handleImageReset}
                 style={buttonStyle}
-              />
+              >
+                <h3 style={{ color: "white" }}>Reset Images</h3>
 
-              <div style={imagesContainerStyle}>
-                {imagePreviews.map((preview, index) => (
-                  <img
-                    key={index}
-                    src={preview}
-                    alt={`Image ${index + 1}`}
-                    style={imagePreviewStyle}
-                  />
-                ))}
-              </div>
+              </Button>
+            )}
 
-              {resetImagesVisible && (
-                <Button
-                  variant="outlined"
-                  color="secondary"
-                  fullWidth
-                  onClick={handleImageReset}
-                  style={buttonStyle}
-                >
-                  Reset Images
-                </Button>
-              )}
-
+            <CustomButton type="submit" onClick={handleAddProduct} disabled={isLoading}>
               {isLoading ? (
-                <Box display="flex" justifyContent="center">
-                  <CircularProgress />
-                </Box>
+                <CircularProgress size={24} color="inherit" />
               ) : (
-                <Button
-                  variant="contained"
-                  color="primary"
-                  fullWidth
-                  onClick={handleAddProduct}
-                  style={buttonStyle}
-                >
-                  Add Product
-                </Button>
+                'Add Product'
               )}
-            </Paper>
-          </form>
-        </Container>
+            </CustomButton>
+
+          
+          </Paper>
+        </form>
       </div>
     </div>
   );
