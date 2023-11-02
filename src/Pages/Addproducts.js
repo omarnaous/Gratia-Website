@@ -200,7 +200,7 @@ const Addproducts = () => {
       <div style={containerStyle}>
         <form>
           <Typography variant="h5" style={{ marginTop: "10px" }} align="center" gutterBottom>
-            ADD PRODUCTS
+            ADD PRODUCT
           </Typography>
           <Paper elevation={0} style={cardStyle}>
             <TextField

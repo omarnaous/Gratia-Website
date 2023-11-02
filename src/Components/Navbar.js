@@ -43,6 +43,7 @@ const Navbar = ({ scrollToSection }) => {
   const Container = styled.div`
   margin-top: 3vh;
   min-height: 60px;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between; /* Adjusted to evenly distribute space between items */
@@ -159,6 +160,8 @@ const Navbar = ({ scrollToSection }) => {
   const [isCartDialogOpen, setIsCartDialogOpen] = useState(false);
   const [isWishDialogOpen, setWhishDialogOpen] = useState(false);
 
+  
+
 
 const handleWhatsAppLinkClick = () => {
   window.location.href = 'https://wa.me/7071114465'; // Replace with your WhatsApp number
@@ -241,7 +244,6 @@ const handleWhatsAppLinkClick = () => {
       <Dialog open={burgerStatus} onClose={() => setBurgerStatus(false)}>
         <MenuMobile onClose={() => setBurgerStatus(false)} menuItems={["Cart"]}></MenuMobile>
       </Dialog>
-
 
       <CustomMenu onClick={() => setBurgerStatus(true)} />
 

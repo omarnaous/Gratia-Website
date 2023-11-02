@@ -107,11 +107,10 @@ const MenuMobile = ({ onClose }) => {
   const openAdminDialog = () => {
     setIsAdminDialog(true);
   };
+
   const closeAdminDialog = () => {
     setIsAdminDialog(false);
   };
-
-
 
   return (
     <>
@@ -123,16 +122,25 @@ const MenuMobile = ({ onClose }) => {
           </CloseButton>
         </Header>
         <ListContainer>
-          {/* Conditionally render based on currentUser */}
           {currentUser ? (
             // Render menu items for logged-in user
-            <MenuItemContainer>
-              <AccountCircleIcon />
-              <MenuItemInfo>
-                <MenuItemName>Logged In</MenuItemName>
-                <MenuItemPrice>{currentUser.username}</MenuItemPrice>
-              </MenuItemInfo>
-            </MenuItemContainer>
+            <>
+              <MenuItemContainer>
+                <AccountCircleIcon />
+                <MenuItemInfo>
+                  <MenuItemName>Logged In</MenuItemName>
+                  <MenuItemPrice>{currentUser.username}</MenuItemPrice>
+                </MenuItemInfo>
+              </MenuItemContainer>
+              {currentUser.email === 'lamis@gmail.com' && (
+                <MenuItemContainer onClick={openAdminDialog}>
+                  <AccountCircleIcon />
+                  <MenuItemInfo>
+                    <MenuItemName>Admin Panel</MenuItemName>
+                  </MenuItemInfo>
+                </MenuItemContainer>
+              )}
+            </>
           ) : (
             // Render menu items for non-logged-in user
             <>
@@ -150,17 +158,10 @@ const MenuMobile = ({ onClose }) => {
               </MenuItemContainer>
             </>
           )}
-          <MenuItemContainer onClick={openAdminDialog}>
-              <AccountCircleIcon />
-              <MenuItemInfo>
-                <MenuItemName>Account</MenuItemName>
-                <MenuItemPrice>{currentUser.username}</MenuItemPrice>
-              </MenuItemInfo>
-            </MenuItemContainer>
           <MenuItemContainer onClick={() => setIsCartDialogOpen(true)}>
             <ShoppingCartIcon />
             <MenuItemInfo>
-              <MenuItemName >Cart</MenuItemName>
+              <MenuItemName>Cart</MenuItemName>
             </MenuItemInfo>
           </MenuItemContainer>
           <MenuItemContainer>
@@ -189,22 +190,21 @@ const MenuMobile = ({ onClose }) => {
       </MenuContainer>
 
       <Dialog open={isCartDialogOpen} onClose={() => setIsCartDialogOpen(false)}>
-
         <Cart />
       </Dialog>
 
       <Dialog open={isSignInDialogOpen} onClose={closeDialogs}>
-        {/* Sign In Form */}
-        <SignInForm onClose={closeDialogs} isSignIn={true} />
+        <SignInForm />
+
       </Dialog>
 
       <Dialog open={isRegisterDialogOpen} onClose={closeDialogs}>
-        {/* Register Form */}
-        <SignInForm onClose={closeDialogs} isSignIn={false} />
+        <SignInForm />
       </Dialog>
+
       <Dialog open={isAdminDialog} onClose={closeAdminDialog}>
-        {/* Register Form */}
-        <AdminPanel onClose={closeAdminDialog}  />
+        {/* Placeholder for Admin Panel */}
+        <AdminPanel></AdminPanel>
       </Dialog>
     </>
   );

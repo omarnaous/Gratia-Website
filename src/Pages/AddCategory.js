@@ -198,7 +198,7 @@ const AddCategory = () => {
               {isLoading ? (
                 <CircularProgress size={24} color="inherit" />
               ) : (
-                'Add Product'
+                'Add Category'
               )}
             </CustomButton>
           </Paper>

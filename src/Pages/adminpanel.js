@@ -7,6 +7,7 @@ import { Button, Typography, Container, Paper, Dialog, DialogTitle, DialogConten
 import Addproducts from './Addproducts';
 import AddCategory from './AddCategory';
 import MyBannerEdit from './EditBanner';
+import EditCategory from './EditCategory';
 
 const AdminPanel = ({ onClose }) => {
     const buttonContainerStyle = {
@@ -67,6 +68,15 @@ const AdminPanel = ({ onClose }) => {
         setEditBanner(false);
     };
 
+    const [isEditCategoryOpen, setEditCategoryOpen] = useState(false);
+    const openEditCat = () => {
+      setEditCategoryOpen(true);
+    };
+  
+    // Function to close the AdminPanel dialog
+    const closeEditCat = () => {
+      setEditCategoryOpen(false);
+    };
 
     return (
         <div>
@@ -80,6 +90,9 @@ const AdminPanel = ({ onClose }) => {
                             </Button>
                             <Button variant="outlined" style={buttonStyle} onClick={handleCategoryDialog}>
                                 <Typography style={typographyStyle}>ADD NEW CATEGORY</Typography>
+                            </Button>
+                            <Button variant="outlined" style={buttonStyle} onClick={openEditCat}>
+                                <Typography style={typographyStyle}>Edit Categories</Typography>
                             </Button>
                                 <Button variant="outlined" style={buttonStyle} onClick={handleEditBannerOpen}>
                                     <Typography style={typographyStyle}>EDIT BANNER IMAGE</Typography>
@@ -114,6 +127,14 @@ const AdminPanel = ({ onClose }) => {
                         </Dialog>
                         <Dialog open={isEditBanner} onClose={handleEditBannerClose}>
                             <MyBannerEdit />
+                            <DialogActions>
+                                <Button onClick={handleEditBannerClose} color="primary">
+                                    Close
+                                </Button>
+                            </DialogActions>
+                        </Dialog>
+                        <Dialog open={isEditCategoryOpen} onClose={closeEditCat}>
+                            <EditCategory />
                             <DialogActions>
                                 <Button onClick={handleEditBannerClose} color="primary">
                                     Close

@@ -44,7 +44,7 @@ const CardMedia = styled.img`
 
 const ProductCard = ({ height, width, image }) => {
   return (
-    <Card width={width}>
+    <Card width={width} style={{margin:"10px"}}>
       <CardMedia
         height={height}
         src={image}

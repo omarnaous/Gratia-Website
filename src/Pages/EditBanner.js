@@ -153,7 +153,7 @@ const MyBannerEdit = () => {
         {isLoading ? (
           <CircularProgress size={24} color="inherit" />
         ) : (
-          'Add Product'
+          'Edit Banner'
         )}
       </CustomButton>
     </div>

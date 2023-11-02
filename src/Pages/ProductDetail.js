@@ -51,24 +51,7 @@ const ProductDetail = () => {
     }
   }, [productsData, indexParam]);
 
-  const Container = styled.div`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: row;
-    min-height: 80vh; /* Use min-height to keep centering consistent */
-    /* width: 82vw; */
-    overflow: hidden;
-    /* padding: 20px; */
-    margin-left: 3vw;
-    margin-right: 3vw;
 
-    @media only screen and (max-width: 479px) {
-      flex-direction: column;
-      align-items: center;
-      margin: 0;
-    }
-  `;
 
   const Title = styled.h1`
     color: black;
@@ -82,29 +65,14 @@ const ProductDetail = () => {
     overflow: hidden;
   `;
 
-  const Column = styled.div`
-    overflow: hidden;
-    margin-left: 10px;
-    width: 60%;
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    justify-content: start;
-    margin-left: 5vw;
+ 
 
-
-    @media only screen and (min-width: 320px) and (max-width: 479px){ 
-      width: 90%;
-      margin: 0px;
-      margin-left: 0vw;
-    }
-  `;
 
   const ImageGallery = styled.div`
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    max-width: 500px; 
+    max-width: 500px;
     overflow: hidden;
     margin-top: 20px;
     margin-bottom: 3vh;
@@ -114,27 +82,48 @@ const ProductDetail = () => {
       margin-left: 0vw;
       width: 100%;
     }
+
+    @media only screen and (min-width: 480px) and (max-width: 767px) {
+      width: 100%;
+      margin-bottom: 3vh;
+      margin-left: 18vw;
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 991px) {
+      margin-left: 8vw;
+
+      width: 100%;
+    }
   `;
 
   const BigImage = styled.img`
-    height: 65vh;
-    width: 40vw;
+    height: auto;
+    max-height: 70vh;
     object-fit: cover;
     border-radius: 10px;
     margin: 10px;
     box-shadow: 0px 0px 10px rgba(128, 128, 128, 0.2);
     transition: transform 0.4s ease;
     overflow: hidden;
-    margin-right: 5vw;
 
-    &:hover {
-      transform: scale(1.1);
+    @media only screen and (min-width: 320px) and (max-width: 479px) {
+      width: 90%;
+      height: 50vh;
+      margin-top: 1vh;
     }
 
-    @media only screen and (min-width: 320px) and (max-width: 479px){
+    @media only screen and (min-width: 480px) and (max-width: 767px) {
       width: 82%;
       height: 50vh;
       margin-top: 20px;
+      margin: 0px;
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 991px) {
+      width: 82%;
+      height: 50vh;
+      margin-top: 20px;
+      margin: 0px;
     }
   `;
 
@@ -151,38 +140,45 @@ const ProductDetail = () => {
       transform: scale(1.1);
     }
 
-      max-width: 1000px;
-      @media only screen and (min-width: 320px) and (max-width: 479px){
-        width: 80px;
-        height: 80px;
+    max-width: 1000px;
+    @media only screen and (min-width: 320px) and (max-width: 479px) {
+      width: 100px;
+      height: 100px;
     }
   `;
 
   const IconContainer = styled.div`
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: start;
+    justify-content: start;
     flex-direction: row;
-    padding: 15px;
     gap: 20px;
-    width: auto;
-    margin-left: 10px;
-    margin-top: 10px;
     overflow: none;
-    border-radius: 10px;
     margin: 10px;
-    box-shadow: 0px 0px 10px rgba(128, 128, 128, 0.2);
-    transition: transform 0.4s ease;
     overflow: hidden;
 
     &:hover {
       transform: scale(1.1);
     }
-    
+  `;
+
+  const LoadingContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+  `;
+
+  const LoadingText = styled.div`
+    font-size: 24px;
   `;
 
   if (!productsData.length) {
-    return <div>Loading...</div>;
+    return (
+      <LoadingContainer>
+        <LoadingText>Loading...</LoadingText>
+      </LoadingContainer>
+    );
   }
 
   if (indexParam === null || indexParam < 0 || indexParam >= productsData.length) {
@@ -209,6 +205,7 @@ const ProductDetail = () => {
       product: productsData[indexParam],
     });
   }
+
   async function addtoWish() {
     const docRef = doc(db, 'whishlist', productsData[indexParam].productName + auth.currentUser.uid);
     setDoc(docRef, {
@@ -218,19 +215,126 @@ const ProductDetail = () => {
   }
 
   const MaterialButtonContainer = styled.div`
-  margin-left: 1.5vw;
-  width: 25vw;
-  @media only screen and (max-width: 479px) {
-    width: 100%; /* Set a different width for mobile devices */
-  }
-`;
+    margin-left: 1.5vw;
+    /* width: 25vw; */
+
+    @media only screen and (max-width: 479px) {
+      margin:0px;
+      width: 100%;
+    }
+
+    @media only screen and (min-width: 480px) and (max-width: 767px) {
+      width: 85%;
+      margin:0px;
+      margin-left: 8vw;
+
+      
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 991px) {
+      width: 85%;
+      margin-left: 8vw;
+
+    }
+  `;
+
+  const ProductContainer = styled.div`
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 85%;
+    /* margin-left: 6vw; */
+    margin-top: 10vh;
+    @media only screen and (min-width: 320px) and (max-width: 479px){ 
+      flex-direction: column;
+      width: 100%;
+      margin-top: 0vh;
+      margin-left: 0vw;
+     }
+
+    @media only screen and (min-width: 480px) and (max-width: 767px){ 
+      flex-direction: column;
+      width: 100%;
+      margin-top: 0vh;
+      margin-left: 0vw;
+     }
+
+    @media only screen and (min-width: 768px) and (max-width: 991px){ 
+      flex-direction: column;
+      width: 100%;
+      margin-top: 0vh;
+      margin-left: 0vw;
+     }
+
+  `
+
+  const LeftColumn = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 25vw;
+    @media only screen and (min-width: 320px) and (max-width: 479px){ 
+      flex-direction: column;
+      width: 100%;
+      padding-left:5vw;
+      margin-bottom: 20px;
+     }
+
+     @media only screen and (min-width: 480px) and (max-width: 767px){ 
+      flex-direction: column;
+      width: 100%;
+      padding-left:9vw;
+      margin-bottom: 2vh;
+     }
+
+    @media only screen and (min-width: 768px) and (max-width: 991px){ 
+      flex-direction: column;
+      width: 100%;
+      padding-left:9vw;
+      margin-bottom: 2vh;
+     }
+
+  `
+  const RightColumn = styled.div`
+    display: flex;
+    flex-direction: column;
+    /* background-color: red; */
+    width: 25vw;
+
+    @media only screen and (min-width: 320px) and (max-width: 479px){ 
+      flex-direction: column;
+      width: 100%;
+      padding-left:4vw;
+      margin-bottom: 20px;
+     }
+
+     @media only screen and (min-width: 480px) and (max-width: 767px){ 
+      flex-direction: column;
+      width: 100%;
+      /* padding-left:9vw; */
+      margin-bottom: 5vh;
+     }
+
+    @media only screen and (min-width: 768px) and (max-width: 991px){ 
+      flex-direction: column;
+      width: 100%;
+      /* padding-left:9vw; */
+      margin-bottom: 5vh;
+     }
+
+
+  `
+
+
+
+
 
   return (
-    <div>
-      <Navbar />
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-      <Container>
-        <Column>
+    <div style={{display:"flex", flexDirection:"column", alignItems:"center" , justifyContent:"space-between"}}> 
+    <Navbar></Navbar> 
+      <ProductContainer>
+        <LeftColumn>
           <Title>{productsData[indexParam].productName}</Title>
           <SubTitle>USD ${productsData[indexParam].productPrice}</SubTitle>
           <IconContainer>
@@ -244,10 +348,11 @@ const ProductDetail = () => {
               <InstagramIcon style={{ color: '#e4405f' }} fontSize="large" />
             </a>
           </IconContainer>
-        </Column>
-        <BigImage src={selectedImage}></BigImage>
-        <Column style={{marginLeft:"0vw"}}>
+          <CustomizedAccordions title={'Description'} paragraph={productsData[indexParam].description} />
 
+        </LeftColumn>
+        <BigImage src={selectedImage}></BigImage>
+        <RightColumn>
           <ImageGallery>
             {imageUrls.map((imageUrl, index) => (
               <SmallImage
@@ -257,30 +362,23 @@ const ProductDetail = () => {
                 onClick={() => handleSmallImageClick(index)}
               />
             ))}
+            {imageUrls.map((imageUrl, index) => (
+              <SmallImage
+                key={index}
+                src={imageUrl}
+                alt={`Image ${index + 1}`}
+                onClick={() => handleSmallImageClick(index)}
+              />
+            ))}
           </ImageGallery>
-          
           <MaterialButtonContainer>
-          <CustomizedAccordions title={'Description'} paragraph={productsData[indexParam].description} />
-
-          <MaterialButton onClick={addtoCart} name="ADD TO CART" width="100%" radius="5px" />
-          <MaterialButton onClick={addtoWish} name="ADD TO WISHLIST" width="100%" radius="5px" />
-
+            <MaterialButton onClick={addtoCart} name="ADD TO CART" width="95%" radius="5px" />
+            <MaterialButton onClick={addtoWish} name="ADD TO WISHLIST" width="95%" radius="5px" />
           </MaterialButtonContainer>
-        </Column>
-      </Container>
-      </div>
-      
-      {lightboxOpen && (
-        <Lightbox
-          mainSrc={imageUrls[lightboxIndex]}
-          nextSrc={imageUrls[(lightboxIndex + 1) % imageUrls.length]}
-          prevSrc={imageUrls[(lightboxIndex + imageUrls.length - 1) % imageUrls.length]}
-          onCloseRequest={() => setLightboxOpen(false)}
-          onMovePrevRequest={() => setLightboxIndex((lightboxIndex + imageUrls.length - 1) % imageUrls.length)}
-          onMoveNextRequest={() => setLightboxIndex((lightboxIndex + 1) % imageUrls.length)}
-        />
-      )}
-      <Footer />
+          
+        </RightColumn>
+      </ProductContainer>
+      <Footer></Footer>
     </div>
   );
 };
