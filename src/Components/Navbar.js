@@ -81,9 +81,6 @@ const Navbar = ({ scrollToSection }) => {
   }
 `;
 
-
-
-
   const LogoTitleContainer = styled.h1`
     color: black;
     font-size: 2.5rem;
