@@ -10,6 +10,7 @@ import AddCategory from './Pages/AddCategory';
 import ResponsiveProductsGrid from './Pages/grid';
 import EditBanner from './Pages/EditBanner';
 import CheckOutPage from './Pages/Checkout.js';
+import MyTableComponent from './Pages/orderPage';
 
 
 function App() {
@@ -18,13 +19,14 @@ function App() {
       <Route path="/" element={<HomePage />} />
       <Route path="/Detail" element={<ProductDetail />} />
       <Route path="/SignIn" element={<SignInForm />} />
-      <Route path="/Admin" element={<AdminPanel />} />
+      {/* <Route path="/Admin" element={<AdminPanel />} /> */}
       <Route path="/AddP" element={<Addproducts />} />
       <Route path="/EditProducts" element={<EditProducts />} />
       <Route path="/AddCategory" element={<AddCategory />} />
       <Route path="/ProductsPage" element={<ResponsiveProductsGrid />} />
       <Route path="/Banner" element={<EditBanner />} />
       <Route path="/Check" element={<CheckOutPage />} />
+      <Route path="/Orders*@LMS" element={<MyTableComponent />} />
 
     </Routes>
   );

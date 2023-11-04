@@ -11,7 +11,7 @@ import SignInForm from '../Pages/SignInForm';
 import Cart from '../Pages/cart';
 import { auth } from '../firebase';
 import AdminPanel from '../Pages/adminpanel';
-
+import Wishlist from '../Pages/Wishlist';
 
 const MenuContainer = styled.div`
   position: fixed;
@@ -87,11 +87,13 @@ const MenuMobile = ({ onClose }) => {
   const [isSignInDialogOpen, setIsSignInDialogOpen] = useState(false);
   const [isRegisterDialogOpen, setIsRegisterDialogOpen] = useState(false);
   const [isAdminDialog, setIsAdminDialog] = useState(false);
+  const [isWishlistDialogOpen, setIsWishlistDialogOpen] = useState(false);
 
   const closeDialogs = () => {
     setIsSignInDialogOpen(false);
     setIsRegisterDialogOpen(false);
     setIsCartDialogOpen(false);
+    setIsWishlistDialogOpen(false);
   };
 
   const openSignInDialog = () => {
@@ -110,6 +112,10 @@ const MenuMobile = ({ onClose }) => {
 
   const closeAdminDialog = () => {
     setIsAdminDialog(false);
+  };
+
+  const openWishlistDialog = () => {
+    setIsWishlistDialogOpen(true);
   };
 
   return (
@@ -143,20 +149,12 @@ const MenuMobile = ({ onClose }) => {
             </>
           ) : (
             // Render menu items for non-logged-in user
-            <>
-              <MenuItemContainer onClick={openSignInDialog}>
-                <AccountCircleIcon />
-                <MenuItemInfo>
-                  <MenuItemName >Sign In</MenuItemName>
-                </MenuItemInfo>
-              </MenuItemContainer>
-              <MenuItemContainer onClick={openRegisterDialog}>
-                <AccountCircleIcon />
-                <MenuItemInfo>
-                  <MenuItemName >Register</MenuItemName>
-                </MenuItemInfo>
-              </MenuItemContainer>
-            </>
+            <MenuItemContainer onClick={openSignInDialog}>
+              <AccountCircleIcon />
+              <MenuItemInfo>
+                <MenuItemName>Sign In</MenuItemName>
+              </MenuItemInfo>
+            </MenuItemContainer>
           )}
           <MenuItemContainer onClick={() => setIsCartDialogOpen(true)}>
             <ShoppingCartIcon />
@@ -164,7 +162,7 @@ const MenuMobile = ({ onClose }) => {
               <MenuItemName>Cart</MenuItemName>
             </MenuItemInfo>
           </MenuItemContainer>
-          <MenuItemContainer>
+          <MenuItemContainer onClick={openWishlistDialog}>
             <FavoriteIcon />
             <MenuItemInfo>
               <MenuItemName>Wishlist</MenuItemName>
@@ -195,7 +193,6 @@ const MenuMobile = ({ onClose }) => {
 
       <Dialog open={isSignInDialogOpen} onClose={closeDialogs}>
         <SignInForm />
-
       </Dialog>
 
       <Dialog open={isRegisterDialogOpen} onClose={closeDialogs}>
@@ -205,6 +202,10 @@ const MenuMobile = ({ onClose }) => {
       <Dialog open={isAdminDialog} onClose={closeAdminDialog}>
         {/* Placeholder for Admin Panel */}
         <AdminPanel></AdminPanel>
+      </Dialog>
+
+      <Dialog open={isWishlistDialogOpen} onClose={() => setIsWishlistDialogOpen(false)}>
+        <Wishlist />
       </Dialog>
     </>
   );

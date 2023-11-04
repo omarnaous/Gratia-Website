@@ -68,9 +68,9 @@ export default function ResponsiveProductsGrid() {
     font-size: 1.5rem;
   `;
 
-const CardBox = styled(Box)``
+  const CardBox = styled(Box)``
 
-const SearchCard = styled.div`
+  const SearchCard = styled.div`
   margin-left: 9%;
   margin-right: 9%;
   margin-top: 3%;
@@ -100,20 +100,6 @@ const SearchCard = styled.div`
   const [searchTerm, setSearchTerm] = useState('');
   const inputRef = useRef(null);
 
-  const handleSearchClick = () => {
-    inputRef.current.focus();
-  };
-
-  const handleSearchInputChange = (e) => {
-    setSearchTerm(e.target.value);
-  };
-
-  const handleSearchSubmit = (e) => {
-    e.preventDefault(); // Prevent the form from submitting (you can also use an input with type="search" for built-in submit behavior)
-    // Do something with the searchTerm, e.g., trigger a search
-    console.log('Search Term:', searchTerm);
-  };
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -136,43 +122,62 @@ const SearchCard = styled.div`
     fetchData();
   }, [nameParam]);
 
+  const handleFormSubmit = (e) => {
+    e.preventDefault(); // Prevent the default form submission behavior
+
+    // Now, you can perform actions based on the submitted search term.
+    // For example, you can log it to the console or perform an API call.
+    console.log('Search term:', searchTerm);
+
+    // You can also use the search term to perform other actions, like filtering data.
+
+    // If you want to navigate to another page or perform some other action,
+    // you can do that here.
+  };
+
+  const cardStyle = {
+    margin: '0 auto', // Center horizontally
+    marginTop: '3%',
+    background: '#f5f5f5',
+    width: '80%',
+    borderRadius: '5px',
+    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)', // Add a subtle box shadow
+    padding: '15px',
+    display: 'flex',
+    alignItems: 'center',
+    '@media only screen and (min-width: 320px) and (max-width: 479px)': {
+      margin: '3%',
+    },
+    '@media only screen and (min-width: 480px) and (max-width: 767px)': {
+      margin: '3%',
+    },
+    '@media only screen and (min-width: 768px) and (max-width: 991px)': {
+      margin: '3%',
+    },
+  };
+
+
+
   return (
     <div>
       <Navbar />
-      <form onSubmit={handleSearchSubmit}>
-        <SearchCard
-          onClick={handleSearchClick}
-        >
-          <button
-            type="submit" // This button triggers the form submission
-            style={{
-              border: "none",
-              outline: "none",
-              backgroundColor: "transparent",
-              cursor: "pointer",
-              fontSize: "18px",
-            }}
-          >
-            🔍
-          </button>
-          <input
-            type="text"
-            id="search"
-            placeholder="ENTER SEARCH HERE..."
-            style={{
-              width: "100%",
-              border: "none",
-              outline: "none",
-              backgroundColor: "transparent",
-              fontSize: "18px",
-            }}
-            value={searchTerm}
-            onChange={handleSearchInputChange} // Update the searchTerm when the input changes
-            required
-            ref={inputRef}
-          />
-          
-        </SearchCard>
+      <form onSubmit={handleFormSubmit}>
+        <input
+          type="text"
+          id="search"
+          placeholder="ENTER SEARCH HERE..."
+          style={{
+            ...cardStyle,
+            border: 'none',
+            outline: 'none',
+            // borderBottom: '1px solid #000', // Black border when active
+          }}
+          ref={inputRef}
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+
+
       </form>
 
       <ContainerBox>
@@ -187,7 +192,7 @@ const SearchCard = styled.div`
                   <Grid item xs={12} sm={12} md={12} lg={12} xl={3} key={index}>
                     <CardBox color="red">
                       <Link to={`/Detail?index=${index}`}>
-                        <ProductCard  image={product.images[0]} />
+                        <ProductCard image={product.images[0]} />
                       </Link>
                       <Title>{product.productName}</Title>
                     </CardBox>

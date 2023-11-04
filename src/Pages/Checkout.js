@@ -1,9 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../Components/Navbar';
-import { auth } from '../firebase';
-import { getDocs, collection, query, where } from 'firebase/firestore';
-import { db } from '../firebase';
-import { useEffect } from 'react';
 import {
   Form,
   CardContainer,
@@ -18,6 +14,9 @@ import {
   MatButton,
   PriceRow,
 } from '../Styles/CheckOutStyle';
+import { collection, addDoc } from 'firebase/firestore';
+import { db } from '../firebase'; // Assuming you have your Firebase configuration in this file
+
 
 function CheckoutPage() {
   const [shippingInfo, setShippingInfo] = useState({
@@ -46,40 +45,23 @@ function CheckoutPage() {
     setPaymentMethod(e.target.value);
   };
 
-  const handleCreditCardInfoChange = (e) => {
-    const { name, value } = e.target;
-    setCreditCardInfo({ ...creditCardInfo, [name]: value });
-  };
-
   const [productsData, setProductsData] = useState([]);
-  const user = auth.currentUser;
 
   useEffect(() => {
-    const fetchData = async () => {
-      if (user) {
-        const q = query(collection(db, 'cart'), where('id', '==', user.uid));
-        const querySnapshot = await getDocs(q);
-
-        const products = [];
-        querySnapshot.forEach((doc) => {
-          products.push(doc.data().product);
-        });
-
-        setProductsData(products);
-      }
-    };
-
-    fetchData();
-  }, [user]);
+    // Retrieve cart data from local storage
+    const cartData = localStorage.getItem('cartData');
+    if (cartData) {
+      setProductsData(JSON.parse(cartData));
+    }
+  }, []); // This effect runs once when the component mounts
 
   // Calculate the total price of all products in the cart
   const subtotalPrice = productsData.reduce(
-    (total, product) => total + parseFloat(product.productPrice),
+    (total, product) => total + parseFloat(product.product.productPrice),
     0
   );
 
   const shipping = 3;
-
   const Total = subtotalPrice + shipping;
 
   function sendWhatsAppMessage(phoneNumber, message) {
@@ -97,39 +79,80 @@ function CheckoutPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    // Check if any required field is missing
+    const requiredFields = ['country', 'firstName', 'lastName', 'phoneNumber', 'address', 'city', 'postalCode'];
+    const missingFields = requiredFields.filter(field => !shippingInfo[field]);
+
+    if (missingFields.length > 0) {
+      alert(`Please fill out the following fields: ${missingFields.join(', ')}`);
+      return;
+    }
+    const currentDate = new Date();
+    const formattedDate = `${currentDate.getMonth() + 1}/${currentDate.getDate()}/${currentDate.getFullYear()}`;
+    const orderData = {
+      orderDate: formattedDate,
+      country: shippingInfo.country,
+      firstName: shippingInfo.firstName,
+      lastName: shippingInfo.lastName,
+      phoneNumber: shippingInfo.phoneNumber,
+      address: shippingInfo.address,
+      city: shippingInfo.city,
+      postalCode: shippingInfo.postalCode,
+      paymentMethod: paymentMethod,
+      products: productsData.map((product, index) => ({
+        name: product.product.productName,
+        price: product.product.productPrice,
+        image: product.product.images[0],
+      })),
+      orderSummary: {
+        subtotal: subtotalPrice,
+        shipping: shipping,
+        total: Total,
+      },
+    };
+
+    async function addOrderToFirestore() {
+      try {
+        const docRef = await addDoc(collection(db, 'orders'), orderData);
+        console.log('Document written with ID: ', docRef.id);
+      } catch (error) {
+        console.error('Error adding document: ', error);
+      }
+    }
+
+    addOrderToFirestore();
+
     // Construct the WhatsApp message with all the information
     const message = `
-    *Contact Information*
     Country: ${shippingInfo.country}
     First Name: ${shippingInfo.firstName}
     Last Name: ${shippingInfo.lastName}
     Phone Number: ${shippingInfo.phoneNumber}
     
-    *Full Address*
+    Full Address
     Address: ${shippingInfo.address}
     City: ${shippingInfo.city}
     Postal Code: ${shippingInfo.postalCode}
     
-    *Payment Method*
+    Payment Method
     Method: ${paymentMethod}
     
-    *Products*
+    Products
     ${productsData
-      .map((product, index) => {
-        return `
-          ${index + 1}. ${product.productName}
-          Price: USD ${product.productPrice}
-          Image:${product.images[0]}
+        .map((product, index) => {
+          return `
+          ${index + 1}. ${product.product.productName}
+          Price: USD ${product.product.productPrice}
+          Image:${product.product.images[0]}
         `;
-      })
-      .join('\n')}
+        })
+        .join('\n')}
     
-    *Order Summary*
+    Order Summary
     Subtotal: $${subtotalPrice}
     Shipping: $${shipping}
     Total: $${Total}
   `;
-  
 
     // Replace 'PHONE_NUMBER_HERE' with the actual phone number
     sendWhatsAppMessage('78803034', message);
@@ -146,7 +169,7 @@ function CheckoutPage() {
               label="Country"
               name="country"
               value={shippingInfo.country}
-              width="100%" // Set the width to 100%
+              width="100%"
               onChange={handleShippingInfoChange}
               required
             />
@@ -157,7 +180,7 @@ function CheckoutPage() {
                 name="firstName"
                 value={shippingInfo.firstName}
                 onChange={handleShippingInfoChange}
-                width="100%" // Set the width to 100%
+                width="100%"
                 required
               />
               <SpacedCustomTextfield
@@ -165,7 +188,7 @@ function CheckoutPage() {
                 name="lastName"
                 value={shippingInfo.lastName}
                 onChange={handleShippingInfoChange}
-                width="100%" // Set the width to 100%
+                width="100%"
                 required
               />
             </Row>
@@ -175,7 +198,7 @@ function CheckoutPage() {
               name="phoneNumber"
               value={shippingInfo.phoneNumber}
               onChange={handleShippingInfoChange}
-              width="100%" // Set the width to 100%
+              width="100%"
               required
             />
             <h3>Full Address</h3>
@@ -184,7 +207,7 @@ function CheckoutPage() {
               name="address"
               value={shippingInfo.address}
               onChange={handleShippingInfoChange}
-              width="100%" // Set the width to 100%
+              width="100%"
               required
             />
             <Row>
@@ -193,7 +216,7 @@ function CheckoutPage() {
                 name="city"
                 value={shippingInfo.city}
                 onChange={handleShippingInfoChange}
-                width="100%" // Set the width to 100%
+                width="100%"
                 required
               />
               <SpacedCustomTextfield
@@ -201,7 +224,7 @@ function CheckoutPage() {
                 name="postalCode"
                 value={shippingInfo.postalCode}
                 onChange={handleShippingInfoChange}
-                width="100%" // Set the width to 100%
+                width="100%"
                 required
               />
             </Row>
@@ -213,7 +236,7 @@ function CheckoutPage() {
                   name="paymentMethod"
                   value="COD"
                   checked={paymentMethod === 'COD'}
-                  width="100%" // Set the width to 100%
+                  width="100%"
                   onChange={handlePaymentMethodChange}
                 />
                 Cash on Delivery (COD)
@@ -222,49 +245,20 @@ function CheckoutPage() {
                 <RadioInput
                   type="radio"
                   name="paymentMethod"
-                  value="CreditCard"
-                  checked={paymentMethod === 'CreditCard'}
+                  value="OMT / WISH"
+                  checked={paymentMethod === 'OMT / WISH'}
                   onChange={handlePaymentMethodChange}
                 />
-                Credit Card
+                OMT / WISH
               </RadioLabel>
             </RadioCard>
-            {paymentMethod === 'CreditCard' && (
-              <div>
-                <h3>Credit Card Information</h3>
-                <SpacedCustomTextfield
-                  label="Full Card Name"
-                  name="cardName"
-                  value={creditCardInfo.cardName}
-                  width="100%" // Set the width to 100%
-                  onChange={handleCreditCardInfoChange}
-                  required
-                />
-                <SpacedCustomTextfield
-                  label="Card Number"
-                  name="cardNumber"
-                  value={creditCardInfo.cardNumber}
-                  width="100%" // Set the width to 100%
-                  onChange={handleCreditCardInfoChange}
-                  required
-                />
-                <SpacedCustomTextfield
-                  label="CVC"
-                  name="cvc"
-                  value={creditCardInfo.cvc}
-                  width="100%" // Set the width to 100%
-                  onChange={handleCreditCardInfoChange}
-                  required
-                />
-              </div>
-            )}
             <h3>Order Summary</h3>
             {productsData.map((product, index) => (
               <ProductCard key={index}>
-                <ProductImage src={product.images[0]} alt="" />
+                <ProductImage src={product.product.images[0]} alt="" />
                 <div>
-                  <h2>{product.productName}</h2>
-                  <h3>USD {product.productPrice} $</h3>
+                  <h2>{product.product.productName}</h2>
+                  <h3>USD {product.product.productPrice} $</h3>
                 </div>
               </ProductCard>
             ))}

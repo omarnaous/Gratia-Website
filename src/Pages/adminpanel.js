@@ -8,6 +8,11 @@ import Addproducts from './Addproducts';
 import AddCategory from './AddCategory';
 import MyBannerEdit from './EditBanner';
 import EditCategory from './EditCategory';
+import { db } from '../firebase';
+import {
+    doc,
+    setDoc,
+  } from 'firebase/firestore'; 
 
 const AdminPanel = ({ onClose }) => {
     const buttonContainerStyle = {
@@ -70,13 +75,40 @@ const AdminPanel = ({ onClose }) => {
 
     const [isEditCategoryOpen, setEditCategoryOpen] = useState(false);
     const openEditCat = () => {
-      setEditCategoryOpen(true);
+        setEditCategoryOpen(true);
     };
-  
+
     // Function to close the AdminPanel dialog
     const closeEditCat = () => {
-      setEditCategoryOpen(false);
+        setEditCategoryOpen(false);
     };
+
+    const [isDeleteBannerOpen, setDeleteBannerOpen] = useState(false);
+
+    const handleDeleteBannerOpen = () => {
+        setDeleteBannerOpen(true);
+    };
+
+    const handleDeleteBannerClose = () => {
+        setDeleteBannerOpen(false);
+    };
+
+    const updateBanner = async () => {
+          try {
+            const bannerRef = doc(db, 'Banner', "Banner"); // Assuming you have a "Banner" document
+            await setDoc(
+              bannerRef,
+              {
+                url: "", // Replace with your Firestore field name
+              },
+              { merge: true }
+            );
+            alert('Banner deleted successfully!');
+            handleDeleteBannerClose();
+          } catch (error) {
+            console.error('Error updating banner:', error);
+          }
+      };
 
     return (
         <div>
@@ -88,23 +120,29 @@ const AdminPanel = ({ onClose }) => {
                             <Button variant="outlined" style={buttonStyle} onClick={handleOpenDialog}>
                                 <Typography style={typographyStyle}>ADD NEW PRODUCTS</Typography>
                             </Button>
+                            <Link to="/EditProducts">
+                                <Button variant="outlined" style={buttonStyle}>
+                                    <Typography style={typographyStyle}>EDIT PRODUCTS</Typography>
+                                </Button>
+                            </Link>
                             <Button variant="outlined" style={buttonStyle} onClick={handleCategoryDialog}>
                                 <Typography style={typographyStyle}>ADD NEW CATEGORY</Typography>
                             </Button>
                             <Button variant="outlined" style={buttonStyle} onClick={openEditCat}>
                                 <Typography style={typographyStyle}>Edit Categories</Typography>
                             </Button>
-                                <Button variant="outlined" style={buttonStyle} onClick={handleEditBannerOpen}>
-                                    <Typography style={typographyStyle}>EDIT BANNER IMAGE</Typography>
-                                </Button>
-                            <Link to="/EditProducts">
-                                <Button variant="outlined" style={buttonStyle}>
-                                    <Typography style={typographyStyle}>EDIT PRODUCTS</Typography>
-                                </Button>
-                            </Link>
-                            <Button variant="outlined" color="info" style={buttonStyle}>
+                            <Button variant="outlined" style={buttonStyle} onClick={handleEditBannerOpen}>
+                                <Typography style={typographyStyle}>EDIT BANNER IMAGE</Typography>
+                            </Button>
+                            <Button variant="outlined" style={buttonStyle} onClick={handleDeleteBannerOpen}>
+                                <Typography style={typographyStyle}>DELETE BANNER IMAGE</Typography>
+                            </Button>
+                           <Link to="/Orders*@LMS">
+                           <Button variant="outlined" color="info" style={buttonStyle}>
                                 <Typography style={typographyStyle}>ORDERS</Typography>
                             </Button>
+                           </Link>
+                            
                             <Button variant="outlined" color="info" style={buttonStyle} onClick={handleSignOut}>
                                 <Typography style={typographyStyle}>SIGN OUT</Typography>
                             </Button>
@@ -136,11 +174,29 @@ const AdminPanel = ({ onClose }) => {
                         <Dialog open={isEditCategoryOpen} onClose={closeEditCat}>
                             <EditCategory />
                             <DialogActions>
-                                <Button onClick={handleEditBannerClose} color="primary">
+                                <Button onClick={closeEditCat} color="primary">
                                     Close
                                 </Button>
                             </DialogActions>
                         </Dialog>
+                        <Dialog open={isDeleteBannerOpen} onClose={handleDeleteBannerClose}>
+                        {/* Create a component or content for deleting the banner */}
+                        <DialogTitle>Delete Banner</DialogTitle>
+                        <DialogContent>
+                            <Typography>
+                                Are you sure you want to delete the banner?
+                            </Typography>
+                            {/* You can add additional content here if needed */}
+                        </DialogContent>
+                        <DialogActions>
+                            <Button onClick={handleDeleteBannerClose} color="primary">
+                                Cancel
+                            </Button>
+                            <Button onClick={updateBanner} color="primary">
+                                Delete
+                            </Button>
+                        </DialogActions>
+                    </Dialog>
                     </form>
                 </div>
             </div>

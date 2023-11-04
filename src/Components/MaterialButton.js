@@ -14,7 +14,7 @@ const MaterialButton = ({ onClick, name, icon, width,radius }) => {
         width: width || 'auto', // Use the width prop if provided, or 'auto' by default
         border: 'none', // Remove default button border
         cursor: 'pointer', // Add pointer cursor on hover
-        fontSize:"15px",
+        fontSize:"18px",
         fontWeight:"bold",
       }}
       onClick={onClick}

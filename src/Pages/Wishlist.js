@@ -1,12 +1,56 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { auth } from '../firebase';
-import { getDocs, collection, query, where } from 'firebase/firestore';
-import { db } from '../firebase';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { doc, deleteDoc } from "firebase/firestore";
 
 const WishlistContainer = styled.div`
+ position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 35%;
+  height: 80vh;
+  background-color: white;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+
+  @media only screen and (min-width: 320px) and (max-width: 479px){ 
+  width: 95%;
+
+   }
+
+  @media only screen and (min-width: 480px) and (max-width: 767px){ 
+    width: 95%;
+
+  }
+
+  @media only screen and (min-width: 768px) and (max-width: 991px){ 
+    width: 95%;
+
+  }
+`;
+
+
+
+const EmptyWishlistMessage = styled.div`
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  font-size: 20px;
+  font-weight: "bold";
+`;
+
+
+const CartContainer = styled.div`
   position: fixed;
   top: 50%;
   left: 50%;
@@ -21,9 +65,20 @@ const WishlistContainer = styled.div`
   align-items: center;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  
+
   @media only screen and (min-width: 320px) and (max-width: 479px){ 
-    width: 90%;
+  width: 95%;
+
+   }
+
+  @media only screen and (min-width: 480px) and (max-width: 767px){ 
+    width: 95%;
+
+  }
+
+  @media only screen and (min-width: 768px) and (max-width: 991px){ 
+    width: 95%;
+
   }
 `;
 
@@ -38,13 +93,17 @@ const Title = styled.h1`
   margin: 0;
 `;
 
-const EmptyWishlistMessage = styled.p`
+const EmptyCartMessage = styled.p`
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 18px;
   margin: 0;
+  height: 100%;
+  width: 100%;
+  font-size: 20px;
+  font-weight: "bold";
 `;
 
 const ListContainer = styled.div`
@@ -71,10 +130,25 @@ const ProductImage = styled.img`
   object-fit: cover;
   border-radius: 10px;
   margin-right: 10px;
-  
+
   @media only screen and (min-width: 320px) and (max-width: 479px){ 
-    width: 50vw;
+  width: 20vw;
+  height: 100%;
+
+   }
+
+  @media only screen and (min-width: 480px) and (max-width: 767px){ 
+    width: 20vw;
+  height: 100%;
+
   }
+
+  @media only screen and (min-width: 768px) and (max-width: 991px){ 
+    width: 20vw;
+  height: 100%;
+
+  }
+  
 `;
 
 const ProductInfo = styled.div`
@@ -116,65 +190,43 @@ const Row = styled.div`
 
 const Wishlist = () => {
   const [wishlistData, setWishlistData] = useState([]);
-  const user = auth.currentUser;
 
   useEffect(() => {
-    const fetchData = async () => {
-      if (user) {
-        const q = query(collection(db, 'whishlist'), where('id', '==', user.uid));
-        const querySnapshot = await getDocs(q);
-
-        const products = [];
-        querySnapshot.forEach((doc) => {
-          products.push(doc.data().product);
-        });
-
-        setWishlistData(products);
-      }
-    };
-
-    fetchData();
-  }, [user]);
-
-  async function DeleteFunction(product) {
-    try {
-      // Construct the document ID based on the product and user ID
-      const documentId = `${product.productName}${auth.currentUser.uid}`;
-
-      // Delete the document from Firestore
-      await deleteDoc(doc(db, "whishlist", documentId));
-
-      // Fetch the updated wishlist data and set the state
-      const q = query(collection(db, 'whishlist'), where('id', '==', auth.currentUser.uid));
-      const querySnapshot = await getDocs(q);
-
-      const updatedProducts = [];
-      querySnapshot.forEach((doc) => {
-        updatedProducts.push(doc.data().product);
-      });
-
-      setWishlistData(updatedProducts);
-    } catch (error) {
-      console.error('Error deleting product from wishlist:', error);
+    // Retrieve wishlist data from local storage
+    const wishlistData = localStorage.getItem('wish');
+    if (wishlistData) {
+      setWishlistData(JSON.parse(wishlistData));
     }
-  }
+  }, []); // This effect runs once when the component mounts
+
+  const DeleteFunction = (product) => {
+    // Remove the product from the wishlistData array
+    const updatedWishlist = wishlistData.filter((item) => item.productName !== product.productName);
+    setWishlistData(updatedWishlist);
+
+    // Update local storage with the updated wishlist data
+    localStorage.setItem('wish', JSON.stringify(updatedWishlist));
+  };
 
   return (
     <WishlistContainer>
-      <Header>
+       <Header>
         <Title>WISHLIST</Title>
       </Header>
       <ListContainer>
         {wishlistData.length === 0 ? (
+          <div style={{height:"100%"}}>
           <EmptyWishlistMessage>Your wishlist is empty.</EmptyWishlistMessage>
+
+          </div>
         ) : (
-          wishlistData.map((product) => (
-            <CardContainer key={product.productId}>
-              <ProductImage src={product.images[0]} alt="" />
+          wishlistData.map((product, index) => (
+            <CardContainer key={index}>
+              <ProductImage src={product.product.images && product.product.images.length > 0 ? product.product.images[0] : 'fallback-image-url'} alt="" />
               <Row>
                 <ProductInfo>
-                  <ProductTitle>{product.productName}</ProductTitle>
-                  <ProductPrice>${product.productPrice}</ProductPrice>
+                  <ProductTitle>{product.product.productName}</ProductTitle>
+                  <ProductPrice>${product.product.productPrice}</ProductPrice>
                 </ProductInfo>
                 <DeleteButton onClick={() => DeleteFunction(product)}>
                   <DeleteIcon style={{ color: "black" }} />

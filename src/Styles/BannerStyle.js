@@ -35,13 +35,16 @@ export const BannerContainer = styled.div`
     width: 100%;
     }
     margin-top: 3vh;
-    margin-left: 2.5vw;
-    margin-right: 2.5vw;
     object-fit: cover;
    }
 
   @media only screen and (min-width: 768px) and (max-width: 991px){ 
-    margin-left: 12vw;
-    margin-right: 12vw;
+    img{
+    height: 50vh;
+    width: 100%;
+    }
+    margin-top: 3vh;
+    object-fit: cover;
    }
+
 `;

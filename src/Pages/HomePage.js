@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import Navbar from '../Components/Navbar';
 import ResponsiveProductsGrid from "../Pages/grid";
 import CategoryGrid from './CategoryGrid';
+import Banner from './Banner'; // Import the Banner component
 import styled, { keyframes } from 'styled-components';
 import Footer from '../Components/Footer';
-import Banner from './Banner';
+import { db } from '../firebase';
+import { doc, getDoc } from "firebase/firestore";
 
-// Keyframes for zooming animation
 const zoomAnimation = keyframes`
   0% {
     transform: scale(1);
@@ -34,8 +35,7 @@ const FullScreenImage = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  
-  `
+`;
 
 const Title = styled.h1`
   font-size: 5rem;
@@ -45,6 +45,7 @@ const Title = styled.h1`
 
 const HomePage = () => {
   const [showContent, setShowContent] = useState(false);
+  const [bannerImage, setBannerImage] = useState(null);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -56,22 +57,68 @@ const HomePage = () => {
     };
   }, []);
 
+  const fetchBanner = async () => {
+    try {
+      const docRef = doc(db, "Banner", "Banner");
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        console.log("Document data:", docSnap.data()["url"]);
+        setBannerImage(docSnap.data()["url"]);
+      } else {
+        // docSnap.data() will be undefined in this case
+        console.log("No such document!");
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchBanner();
+  }, []);
+
+
+  const HomePageContainer = styled.div`
+    margin-left: 7vw;
+    margin-right: 7vw;
+
+    @media only screen and (min-width: 320px) and (max-width: 479px){ 
+      margin-left: 0vw;
+      margin-right: 0vw;
+     }
+
+      @media only screen and (min-width: 480px) and (max-width: 767px){ 
+      margin-left: 0vw;
+      margin-right: 0vw;
+       }
+
+    @media only screen and (min-width: 768px) and (max-width: 991px){ 
+      margin-left: 0vw;
+      margin-right: 0vw;
+       
+     }
+
+    
+  `;
+  
+  
+
   return (
-    <div style={{marginLeft:"10vw", marginRight:"10vw"}}>
+    <HomePageContainer >
       {!showContent ? (
         <FullScreenImage>
           <Title>GRATIA</Title>
         </FullScreenImage>
       ) : (
-        <div>
+        <HomePageContainer>
           <Navbar />
-          <Banner />
+          {bannerImage ? <Banner bannerImage={bannerImage} /> : null}
           <CategoryGrid />
           <Footer />
-
-        </div>
+        </HomePageContainer>
       )}
-    </div>
+    </HomePageContainer>
   );
 };
 

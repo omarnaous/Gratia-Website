@@ -109,6 +109,9 @@ const EditCategoryWithImage = () => {
     // Update the category title and banner image here
     updateCategoryTitle(newTitle);
     updateBanner(imageURL);
+    alert('Category title and image updated successfully!');
+    handleImageReset();
+
   };
 
   const uploadImageToStorage = async () => {
@@ -130,40 +133,42 @@ const EditCategoryWithImage = () => {
     return null;
   };
 
-  const updateCategoryTitle = async (newTitle) => {
-    // Update the Firestore document with the new title
+  const updateCategoryTitle = async (newTitle, imageURL) => {
+    // Update the Firestore document with the new title and image
     try {
       const categoryRef = doc(db, 'Categories', category); // Replace 'Categories' with your collection name
       await setDoc(
         categoryRef,
         {
-          categoryName: newTitle, // Replace with your Firestore field name for title
+          categoryName: newTitle,
+          image: imageURL,
         },
         { merge: true }
       );
-      alert('Category title updated successfully!');
+      alert('Category title and image updated successfully!');
     } catch (error) {
-      console.error('Error updating category title:', error);
+      console.error('Error updating category title and image:', error);
     }
   };
+  
+  
 
   const updateBanner = async (imageURL) => {
-    if (imageURL) {
-      try {
-        const bannerRef = doc(db, 'Banner', "Banner"); // Assuming you have a "Banner" document
-        await setDoc(
-          bannerRef,
-          {
-            url: imageURL, // Replace with your Firestore field name
-          },
-          { merge: true }
-        );
-        alert('Banner edited successfully!');
-      } catch (error) {
-        console.error('Error updating banner:', error);
-      }
+    // Update the Firestore document with the new image
+    try {
+      const categoryRef = doc(db, 'Categories', category); // Replace 'Categories' with your collection name
+      await setDoc(
+        categoryRef,
+        {
+          image: imageURL,
+        },
+        { merge: true }
+      );
+    } catch (error) {
+      console.error('Error updating category image:', error);
     }
   };
+  
 
 
   const containerStyle = {

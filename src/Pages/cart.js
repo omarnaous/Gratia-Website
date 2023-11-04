@@ -1,37 +1,43 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { auth } from '../firebase';
-import { getDocs, collection, query, where } from 'firebase/firestore';
-import { db } from '../firebase';
 import MaterialButton from '../Components/MaterialButton';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { doc, deleteDoc } from "firebase/firestore";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingBag } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 
+const cartKey = 'cartData'; // Key for storing cart data in local storage
 
 const CartContainer = styled.div`
   position: fixed;
-  top: 50%; /* Center vertically */
-  left: 50%; /* Center horizontally */
-  transform: translate(-50%, -50%); /* Center the element */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 35%;
-  height: 80vh; /* Adjust the height as needed */
+  height: 80vh;
   background-color: white;
   z-index: 1;
   display: flex;
   flex-direction: column;
   justify-content: start;
   align-items: center;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Apply elevation */
-  border-radius: 10px; /* Apply border-radius */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+
   @media only screen and (min-width: 320px) and (max-width: 479px){ 
-    width: 90%;
+  width: 95%;
+
    }
 
-  @media only screen and (min-width: 480px) and (max-width: 767px){  }
+  @media only screen and (min-width: 480px) and (max-width: 767px){ 
+    width: 95%;
 
+  }
+
+  @media only screen and (min-width: 768px) and (max-width: 991px){ 
+    width: 95%;
+
+  }
 `;
 
 const Header = styled.div`
@@ -52,6 +58,10 @@ const EmptyCartMessage = styled.p`
   justify-content: center;
   font-size: 18px;
   margin: 0;
+  height: 100%;
+  width: 100%;
+  font-size: 20px;
+  font-weight: "bold";
 `;
 
 const ListContainer = styled.div`
@@ -68,8 +78,8 @@ const CardContainer = styled.div`
   width: 95%;
   margin: 10px;
   background-color: white;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Apply elevation */
-  border-radius: 10px; /* Apply border-radius */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
 `;
 
 const ProductImage = styled.img`
@@ -78,9 +88,25 @@ const ProductImage = styled.img`
   object-fit: cover;
   border-radius: 10px;
   margin-right: 10px;
+
   @media only screen and (min-width: 320px) and (max-width: 479px){ 
-    width: 50vw
+  width: 20vw;
+  height: 100%;
+
    }
+
+  @media only screen and (min-width: 480px) and (max-width: 767px){ 
+    width: 20vw;
+  height: 100%;
+
+  }
+
+  @media only screen and (min-width: 768px) and (max-width: 991px){ 
+    width: 20vw;
+  height: 100%;
+
+  }
+  
 `;
 
 const ProductInfo = styled.div`
@@ -96,27 +122,20 @@ const ProductTitle = styled.h2`
 const ProductPrice = styled.h3`
   margin: 0;
 `;
-const CheckoutButton = styled(MaterialButton)`
-  width: 400px !important; /* Set your desired width value here */
-  /* Other styles... */
-`;
-
-
-
 
 const DeleteButton = styled.button`
-  background-color: #f5f5f5; /* Slight grey background color */
+  background-color: #f5f5f5;
   border: none;
   font-size: 20px;
   cursor: pointer;
-  margin-left: 10px; /* Add some left margin for spacing */
-  width: 40px; /* Increase the width and height for a larger radius */
+  margin-left: 10px;
+  width: 40px;
   height: 40px;
-  border-radius: 50%; /* Make it circular */
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Apply elevation */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 `;
 
 const Row = styled.div`
@@ -126,61 +145,36 @@ const Row = styled.div`
   width: 90%;
   margin: 10px;
 `;
+
 const StyledLink = styled(Link)`
-  /* Your custom styles here */
-  text-decoration: none; /* Remove underline */
-  color: inherit; /* Inherit text color */
-  cursor: pointer; /* Change cursor to pointer */
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
   width: 100%;
 `;
 
 const Cart = ({ onClose }) => {
   const [productsData, setProductsData] = useState([]);
-  const user = auth.currentUser;
 
   useEffect(() => {
-    const fetchData = async () => {
-      if (user) {
-        const q = query(collection(db, 'cart'), where('id', '==', user.uid));
-        const querySnapshot = await getDocs(q);
-
-        const products = [];
-        querySnapshot.forEach((doc) => {
-          products.push(doc.data().product);
-        });
-
-        setProductsData(products);
-      }
-    };
-
-    fetchData();
-  }, [user]);
+    // Retrieve cart data from local storage
+    const cartData = localStorage.getItem(cartKey);
+    if (cartData) {
+      setProductsData(JSON.parse(cartData));
+    }
+  }, []); // This effect runs once when the component mounts
 
   // Calculate the total price of all products in the cart
-  const totalPrice = productsData.reduce((total, product) => total + parseFloat(product.productPrice), 0);
+  const totalPrice = productsData.reduce((total, product) => total + parseFloat(product.product.productPrice), 0);
 
-  async function DeleteFunction(product) {
-    try {
-      // Construct the document ID based on the product and user ID
-      const documentId = `${product.productName}${auth.currentUser.uid}`;
+  const DeleteFunction = (product) => {
+    // Remove the product from the productsData array
+    const updatedProducts = productsData.filter((item) => item !== product);
+    setProductsData(updatedProducts);
 
-      // Delete the document from Firestore
-      await deleteDoc(doc(db, "cart", documentId));
-
-      // Fetch the updated cart data and set the state
-      const q = query(collection(db, 'cart'), where('id', '==', auth.currentUser.uid));
-      const querySnapshot = await getDocs(q);
-
-      const updatedProducts = [];
-      querySnapshot.forEach((doc) => {
-        updatedProducts.push(doc.data().product);
-      });
-
-      setProductsData(updatedProducts);
-    } catch (error) {
-      console.error('Error deleting product from cart:', error);
-    }
-  }
+    // Update local storage with the updated cart data
+    localStorage.setItem(cartKey, JSON.stringify(updatedProducts));
+  };
 
   return (
     <CartContainer>
@@ -189,15 +183,17 @@ const Cart = ({ onClose }) => {
       </Header>
       <ListContainer>
         {productsData.length === 0 ? (
-          <EmptyCartMessage>Your cart is empty.</EmptyCartMessage>
+          <div style={{ height: "100%" }}>
+            <EmptyCartMessage>Your cart is empty.</EmptyCartMessage>
+          </div>
         ) : (
-          productsData.map((product) => (
-            <CardContainer key={product.productId}>
-              <ProductImage src={product.images[0]} alt="" />
+          productsData.map((product, index) => (
+            <CardContainer key={index}>
+              <ProductImage src={product.product.images[0]} alt="" />
               <Row>
                 <ProductInfo>
-                  <ProductTitle>{product.productName}</ProductTitle>
-                  <ProductPrice>${product.productPrice}</ProductPrice>
+                  <ProductTitle>{product.product.productName}</ProductTitle>
+                  <ProductPrice>${product.product.productPrice}</ProductPrice>
                 </ProductInfo>
                 <DeleteButton onClick={() => DeleteFunction(product)}>
                   <DeleteIcon style={{ color: "black" }} />
@@ -208,12 +204,11 @@ const Cart = ({ onClose }) => {
         )}
       </ListContainer>
       <Row>
-       <h3>Total</h3>
-      <h3>${totalPrice}</h3> 
+        <h3>Total</h3>
+        <h3>${totalPrice.toFixed(2)}</h3>
       </Row>
       <StyledLink to="/Check">
-      {productsData.length > 0 && <CheckoutButton icon={faShoppingBag} name={`CHECKOUT $${totalPrice}`} width="100%" />}
-
+        {productsData.length > 0 && <MaterialButton icon={faShoppingBag} name={`CHECKOUT $${totalPrice.toFixed(2)}`} width="100%" />}
       </StyledLink>
     </CartContainer>
   );

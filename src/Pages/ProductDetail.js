@@ -65,7 +65,7 @@ const ProductDetail = () => {
     overflow: hidden;
   `;
 
- 
+
 
 
   const ImageGallery = styled.div`
@@ -199,20 +199,39 @@ const ProductDetail = () => {
   };
 
   async function addtoCart() {
-    const docRef = doc(db, 'cart', productsData[indexParam].productName + auth.currentUser.uid);
-    setDoc(docRef, {
-      id: auth.currentUser.uid,
+    const cartKey = 'cartData'; // Key for storing cart data in local storage
+    const existingCartData = localStorage.getItem(cartKey);
+    const cartData = existingCartData ? JSON.parse(existingCartData) : [];
+  
+    // Add the selected product to the cart
+    const newCartItem = {
       product: productsData[indexParam],
-    });
+    };
+    cartData.push(newCartItem);
+  
+    // Save the updated cart data to local storage
+    localStorage.setItem(cartKey, JSON.stringify(cartData));
+    alert("Added to cart");
   }
-
   async function addtoWish() {
-    const docRef = doc(db, 'whishlist', productsData[indexParam].productName + auth.currentUser.uid);
-    setDoc(docRef, {
-      id: auth.currentUser.uid,
+    const cartKey = 'wish'; // Key for storing cart data in local storage
+    const existingCartData = localStorage.getItem(cartKey);
+    const cartData = existingCartData ? JSON.parse(existingCartData) : [];
+  
+    // Add the selected product to the cart
+    const newCartItem = {
       product: productsData[indexParam],
-    });
+    };
+    cartData.push(newCartItem);
+  
+    // Save the updated cart data to local storage
+    localStorage.setItem(cartKey, JSON.stringify(cartData));
+    alert("Added to Wishlist");
   }
+  
+  
+
+
 
   const MaterialButtonContainer = styled.div`
     margin-left: 1.5vw;
@@ -274,6 +293,7 @@ const ProductDetail = () => {
     display: flex;
     flex-direction: column;
     width: 25vw;
+    margin-left: 1vh;
     @media only screen and (min-width: 320px) and (max-width: 479px){ 
       flex-direction: column;
       width: 100%;
@@ -301,6 +321,7 @@ const ProductDetail = () => {
     flex-direction: column;
     /* background-color: red; */
     width: 25vw;
+    margin-left: 1vh;
 
     @media only screen and (min-width: 320px) and (max-width: 479px){ 
       flex-direction: column;
@@ -331,13 +352,13 @@ const ProductDetail = () => {
 
 
   return (
-    <div style={{display:"flex", flexDirection:"column", alignItems:"center" , justifyContent:"space-between"}}> 
-    <Navbar></Navbar> 
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between" }}>
+      <Navbar></Navbar>
       <ProductContainer>
         <LeftColumn>
           <Title>{productsData[indexParam].productName}</Title>
           <SubTitle>USD ${productsData[indexParam].productPrice}</SubTitle>
-          <IconContainer>
+          {/* <IconContainer>
             <a href={generateWhatsAppShareLink()} target="_blank" rel="noopener noreferrer">
               <FontAwesomeIcon icon={faWhatsapp} size="2x" style={{ color: 'green' }} />
             </a>
@@ -347,21 +368,14 @@ const ProductDetail = () => {
             <a href="https://www.instagram.com/your_instagram" target="_blank" rel="noopener noreferrer">
               <InstagramIcon style={{ color: '#e4405f' }} fontSize="large" />
             </a>
-          </IconContainer>
+          </IconContainer> */}
           <CustomizedAccordions title={'Description'} paragraph={productsData[indexParam].description} />
 
         </LeftColumn>
-        <BigImage src={selectedImage}></BigImage>
+        <BigImage src={selectedImage} onClick={() => handleSmallImageClick(0)}
+        ></BigImage>
         <RightColumn>
           <ImageGallery>
-            {imageUrls.map((imageUrl, index) => (
-              <SmallImage
-                key={index}
-                src={imageUrl}
-                alt={`Image ${index + 1}`}
-                onClick={() => handleSmallImageClick(index)}
-              />
-            ))}
             {imageUrls.map((imageUrl, index) => (
               <SmallImage
                 key={index}
@@ -375,10 +389,20 @@ const ProductDetail = () => {
             <MaterialButton onClick={addtoCart} name="ADD TO CART" width="95%" radius="5px" />
             <MaterialButton onClick={addtoWish} name="ADD TO WISHLIST" width="95%" radius="5px" />
           </MaterialButtonContainer>
-          
         </RightColumn>
       </ProductContainer>
-      <Footer></Footer>
+      {lightboxOpen && (
+        <Lightbox
+          mainSrc={imageUrls[lightboxIndex]} // The image to display in the lightbox
+          nextSrc={imageUrls[(lightboxIndex + 1) % imageUrls.length]} // The next image to display
+          prevSrc={imageUrls[(lightboxIndex + imageUrls.length - 1) % imageUrls.length]} // The previous image to display
+          onCloseRequest={() => setLightboxOpen(false)} // Handle close event
+          onMovePrevRequest={() => setLightboxIndex((lightboxIndex + imageUrls.length - 1) % imageUrls.length)} // Handle previous image request
+          onMoveNextRequest={() => setLightboxIndex((lightboxIndex + 1) % imageUrls.length)} // Handle next image request
+        />
+      )}
+
+      {/* <Footer></Footer> */}
     </div>
   );
 };

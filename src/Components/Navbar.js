@@ -70,10 +70,10 @@ const Navbar = ({ scrollToSection }) => {
   @media only screen and (min-width: 320px) and (max-width: 479px) {
     & > * {
     flex-grow:0; /* Items will take up available space */
-    text-align: center; /* Optional: center align text */
+    text-align: start; /* Optional: center align text */
   }
-    margin: 2vh;
-    /* justify-content: space-between; */ /* Commented out to let items take more space */
+  margin-left: 2vw;
+  width: 95%;
   }
 
   @media only screen and (min-width: 480px) and (max-width: 767px) {
@@ -185,21 +185,17 @@ const handleWhatsAppLinkClick = () => {
       </Link>
 
       <Menu>
-          <Link>
             <a onClick={() => setIsCartDialogOpen(true)}>
               <FontAwesomeIcon style={{ marginLeft: '5px', marginRight: '5px' }} icon={faShoppingBag} />
-              {"|"}
+              {"CART |"}
             </a>
-          </Link>
-          <Link>
             <a onClick={() => setWhishDialogOpen(true)}>
               <FontAwesomeIcon style={{marginRight: '5px' }} icon={faHeart} />
-              {"| "}
+              {"Wishlist |"}
             </a>
-          </Link>
         {user ? (
           <>
-            <a onClick={openAdminPanelDialog}> {"ACCOUNT | "}</a>
+            <a onClick={openAdminPanelDialog}> {"ACCOUNT "}</a>
             <Dialog open={isAdminPanelOpen} onClose={closeAdminPanelDialog}>
               <AdminPanel onClose={closeAdminPanelDialog} />
             </Dialog>
@@ -218,15 +214,13 @@ const handleWhatsAppLinkClick = () => {
           <Wishlist onClose={() => setWhishDialogOpen(false)} />
         </Dialog>
         {user ? (
-          <p> {" LOGGED IN"}</p>
+          <p> {""}</p>
         ) : (
           <>
             <Link>
-              <a onClick={openSignInDialog}>LOGIN |</a>
+              <a onClick={openSignInDialog}>LOGIN</a>
             </Link>
-            <Link>
-              <a onClick={openRegisterDialog}>CREATE ACCOUNT</a>
-            </Link>
+            
 
             {/* Sign In Dialog */}
             <Dialog open={isSignInDialogOpen} onClose={closeDialogs}>
