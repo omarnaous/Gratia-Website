@@ -3,54 +3,6 @@ import styled from 'styled-components';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 const WishlistContainer = styled.div`
- position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 35%;
-  height: 80vh;
-  background-color: white;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  align-items: center;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-
-  @media only screen and (min-width: 320px) and (max-width: 479px){ 
-  width: 95%;
-
-   }
-
-  @media only screen and (min-width: 480px) and (max-width: 767px){ 
-    width: 95%;
-
-  }
-
-  @media only screen and (min-width: 768px) and (max-width: 991px){ 
-    width: 95%;
-
-  }
-`;
-
-
-
-const EmptyWishlistMessage = styled.div`
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  margin: 0;
-  height: 100%;
-  width: 100%;
-  font-size: 20px;
-  font-weight: "bold";
-`;
-
-
-const CartContainer = styled.div`
   position: fixed;
   top: 50%;
   left: 50%;
@@ -82,18 +34,7 @@ const CartContainer = styled.div`
   }
 `;
 
-const Header = styled.div`
-  display: flex;
-  justify-content: space-between !important;
-  align-items: center;
-  padding: 10px;
-`;
-
-const Title = styled.h1`
-  margin: 0;
-`;
-
-const EmptyCartMessage = styled.p`
+const EmptyWishlistMessage = styled.div`
   flex: 1;
   display: flex;
   align-items: center;
@@ -103,7 +44,18 @@ const EmptyCartMessage = styled.p`
   height: 100%;
   width: 100%;
   font-size: 20px;
-  font-weight: "bold";
+  font-weight: bold;
+`;
+
+const Header = styled.div`
+  display: flex;
+  justify-content: space-between !important;
+  align-items: center;
+  padding: 10px;
+`;
+
+const Title = styled.h1`
+  margin: 0;
 `;
 
 const ListContainer = styled.div`
@@ -131,24 +83,7 @@ const ProductImage = styled.img`
   border-radius: 10px;
   margin-right: 10px;
 
-  @media only screen and (min-width: 320px) and (max-width: 479px){ 
-  width: 20vw;
-  height: 100%;
-
-   }
-
-  @media only screen and (min-width: 480px) and (max-width: 767px){ 
-    width: 20vw;
-  height: 100%;
-
-  }
-
-  @media only screen and (min-width: 768px) and (max-width: 991px){ 
-    width: 20vw;
-  height: 100%;
-
-  }
-  
+  // Media queries for responsive design...
 `;
 
 const ProductInfo = styled.div`
@@ -190,14 +125,21 @@ const Row = styled.div`
 
 const Wishlist = () => {
   const [wishlistData, setWishlistData] = useState([]);
+  const [selectedCode, setSelectedCode] = useState(localStorage.getItem('selectedCode') || "USD");
+  const [rate, setRate] = useState(1); // Default rate is 1 for the selected currency
 
   useEffect(() => {
+    // Fetch currency rate
+    fetch(`https://api.currencyfreaks.com/v2.0/rates/latest?apikey=596b192be02d41e1b86c2d6a92e56801&symbols=${selectedCode}`)
+      .then((response) => response.json())
+      .then((data) => setRate(data.rates[selectedCode] || 1)); // Use 1 as a default rate if not available
+
     // Retrieve wishlist data from local storage
     const wishlistData = localStorage.getItem('wish');
     if (wishlistData) {
       setWishlistData(JSON.parse(wishlistData));
     }
-  }, []); // This effect runs once when the component mounts
+  }, [selectedCode]);
 
   const DeleteFunction = (product) => {
     // Remove the product from the wishlistData array
@@ -210,14 +152,13 @@ const Wishlist = () => {
 
   return (
     <WishlistContainer>
-       <Header>
+      <Header>
         <Title>WISHLIST</Title>
       </Header>
       <ListContainer>
         {wishlistData.length === 0 ? (
-          <div style={{height:"100%"}}>
-          <EmptyWishlistMessage>Your wishlist is empty.</EmptyWishlistMessage>
-
+          <div style={{ height: "100%" }}>
+            <EmptyWishlistMessage>Your wishlist is empty.</EmptyWishlistMessage>
           </div>
         ) : (
           wishlistData.map((product, index) => (
@@ -226,7 +167,9 @@ const Wishlist = () => {
               <Row>
                 <ProductInfo>
                   <ProductTitle>{product.product.productName}</ProductTitle>
-                  <ProductPrice>${product.product.productPrice}</ProductPrice>
+                  <ProductPrice>
+                    {selectedCode} {(product.product.productPrice * rate).toFixed(2)}
+                  </ProductPrice>
                 </ProductInfo>
                 <DeleteButton onClick={() => DeleteFunction(product)}>
                   <DeleteIcon style={{ color: "black" }} />

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { collection, getDocs } from "firebase/firestore";
 import styled from 'styled-components';
+import { getDoc } from 'firebase/firestore';
+
 
 import {
   Button,
@@ -116,15 +118,27 @@ const Addproducts = () => {
         uploadedImageUrls.push(downloadURL);
       }
   
-      const productRef = doc(db, 'products', productName);
+      const docRef = doc(db, "products", "products");
+
+      // Get the document snapshot
+      const docSnap = await getDoc(docRef);
+
+      console.log(docSnap.data().all);  
+
+      const oldList = docSnap.data().all;
+
+      oldList.push({
+        productName: productName,
+        productPrice: productPrice,
+        category: category,
+        description: description,
+        images: uploadedImageUrls,
+      });
+
       await setDoc(
-        productRef,
+        docRef,
         {
-          productName: productName,
-          productPrice: productPrice,
-          category: category,
-          description: description,
-          images: uploadedImageUrls,
+          all: oldList,
         },
         { merge: true }
       );

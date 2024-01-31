@@ -11,12 +11,15 @@ import ResponsiveProductsGrid from './Pages/grid';
 import EditBanner from './Pages/EditBanner';
 import CheckOutPage from './Pages/Checkout.js';
 import MyTableComponent from './Pages/orderPage';
+import UserOrders from './Pages/userorders';
+import Newhome from './Pages/Newhome';
 
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
+      <Route path="/Home" element={<Newhome />} />
       <Route path="/Detail" element={<ProductDetail />} />
       <Route path="/SignIn" element={<SignInForm />} />
       {/* <Route path="/Admin" element={<AdminPanel />} /> */}
@@ -27,6 +30,7 @@ function App() {
       <Route path="/Banner" element={<EditBanner />} />
       <Route path="/Check" element={<CheckOutPage />} />
       <Route path="/Orders*@LMS" element={<MyTableComponent />} />
+      <Route path="/UserOrders" element={<UserOrders />} />
 
     </Routes>
   );

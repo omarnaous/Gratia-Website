@@ -43,11 +43,6 @@ const AddCategory = () => {
     marginBottom: '16px',
   };
 
-  const selectStyle = {
-    marginBottom: '16px',
-    width: '100%',
-  };
-
   const imagesContainerStyle = {
     display: 'flex',
     flexWrap: 'wrap',

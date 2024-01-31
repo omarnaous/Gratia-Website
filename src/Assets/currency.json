@@ -1,0 +1,1782 @@
+[{
+   "currencyCode":"USD",
+   "currencyName":"US Dollar",
+   "countryCode":"AS",
+   "countryName":"American Samoa",
+   "status":"AVAILABLE",
+   "availableFrom":"1984-11-28",
+   "availableUntil":"2023-11-05",
+   "icon":"https://currencyfreaks.com/photos/flags/usd.png"
+},
+    {
+       "currencyCode":"FJD",
+       "currencyName":"Fiji Dollar",
+       "countryCode":"FJ",
+       "countryName":"Fiji",
+       "status":"AVAILABLE",
+       "availableFrom":"1989-08-18",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/fjd.png"
+    },
+    {
+       "currencyCode":"MXN",
+       "currencyName":"Mexican Peso",
+       "countryCode":"MX",
+       "countryName":"Mexico",
+       "status":"AVAILABLE",
+       "availableFrom":"1993-01-05",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/mxn.png"
+    },
+    {
+       "currencyCode":"LVL",
+       "currencyName":"Latvian Lats",
+       "countryCode":"LV",
+       "countryName":"Latvia",
+       "status":"AVAILABLE",
+       "availableFrom":"2022-12-09",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/lvl.png"
+    },
+    {
+       "currencyCode":"SCR",
+       "currencyName":"Seychellois Rupee",
+       "countryCode":"SC",
+       "countryName":"Seychelles",
+       "status":"AVAILABLE",
+       "availableFrom":"1998-07-31",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/scr.png"
+    },
+    {
+       "currencyCode":"CDF",
+       "currencyName":"Congolese Franc",
+       "countryCode":"CD",
+       "countryName":"Democratic Republic of the Congo",
+       "status":"AVAILABLE",
+       "availableFrom":"2009-10-27",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/cdf.png"
+    },
+    {
+       "currencyCode":"BBD",
+       "currencyName":"Barbadian Dollar",
+       "countryCode":"BB",
+       "countryName":"Barbados",
+       "status":"AVAILABLE",
+       "availableFrom":"1989-08-18",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/bbd.png"
+    },
+    {
+       "currencyCode":"HNL",
+       "currencyName":"Honduran Lempira",
+       "countryCode":"HN",
+       "countryName":"Honduras",
+       "status":"AVAILABLE",
+       "availableFrom":"1989-08-18",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/hnl.png"
+    },
+    {
+       "currencyCode":"UGX",
+       "currencyName":"Uganda Shilling",
+       "countryCode":"UG",
+       "countryName":"Uganda",
+       "status":"AVAILABLE",
+       "availableFrom":"1989-08-18",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/ugx.png"
+    },
+    {
+       "currencyCode":"SDG",
+       "currencyName":"Sudanese Pound",
+       "countryCode":"SD",
+       "countryName":"Sudan",
+       "status":"AVAILABLE",
+       "availableFrom":"1996-05-31",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/sdg.png"
+    },
+    {
+       "currencyCode":"IQD",
+       "currencyName":"Iraqi Dinar",
+       "countryCode":"IQ",
+       "countryName":"Iraq",
+       "status":"AVAILABLE",
+       "availableFrom":"1989-08-18",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/iqd.png"
+    },
+    {
+       "currencyCode":"GMD",
+       "currencyName":"Gambian Dalasi",
+       "countryCode":"GM",
+       "countryName":"Gambia",
+       "status":"AVAILABLE",
+       "availableFrom":"1989-08-18",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/gmd.png"
+    },
+    {
+       "currencyCode":"MYR",
+       "currencyName":"Malaysian Ringgit",
+       "countryCode":"MY",
+       "countryName":"Malaysia",
+       "status":"AVAILABLE",
+       "availableFrom":"1986-04-25",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/myr.png"
+    },
+    {
+       "currencyCode":"FKP",
+       "currencyName":"Falkland Islands Pound",
+       "countryCode":"FK",
+       "countryName":"Falkland Islands",
+       "status":"AVAILABLE",
+       "availableFrom":"1998-07-31",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/fkp.png"
+    },
+    {
+       "currencyCode":"XOF",
+       "currencyName":"West African CFA Franc",
+       "countryCode":"CFA",
+       "countryName":"African Financial Community",
+       "status":"AVAILABLE",
+       "availableFrom":"2009-09-28",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/xof.png"
+    },
+    {
+       "currencyCode":"SEK",
+       "currencyName":"Swedish Krona",
+       "countryCode":"SE",
+       "countryName":"Sweden",
+       "status":"AVAILABLE",
+       "availableFrom":"1984-11-28",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/sek.png"
+    },
+    {
+       "currencyCode":"GNF",
+       "currencyName":"Guinean Franc",
+       "countryCode":"GN",
+       "countryName":"Guinea",
+       "status":"AVAILABLE",
+       "availableFrom":"1998-07-31",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/gnf.png"
+    },
+    {
+       "currencyCode":"MZN",
+       "currencyName":"Mozambican Metical",
+       "countryCode":"MZ",
+       "countryName":"Mozambique",
+       "status":"AVAILABLE",
+       "availableFrom":"2006-07-03",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/mzn.png"
+    },
+    {
+       "currencyCode":"QAR",
+       "currencyName":"Qatari Rial",
+       "countryCode":"QA",
+       "countryName":"Qatar",
+       "status":"AVAILABLE",
+       "availableFrom":"1989-08-18",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/qar.png"
+    },
+    {
+       "currencyCode":"IRR",
+       "currencyName":"Iranian Rial",
+       "countryCode":"IR",
+       "countryName":"Iran",
+       "status":"AVAILABLE",
+       "availableFrom":"1989-08-18",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/irr.png"
+    },
+    {
+       "currencyCode":"THB",
+       "currencyName":"Thai Baht",
+       "countryCode":"TH",
+       "countryName":"Thailand",
+       "status":"AVAILABLE",
+       "availableFrom":"1985-10-02",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/thb.png"
+    },
+    {
+       "currencyCode":"XPF",
+       "currencyName":"CFP Franc",
+       "countryCode":"CFP",
+       "countryName":"French colonies of the Pacific",
+       "status":"AVAILABLE",
+       "availableFrom":"1989-08-18",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/xpf.png"
+    },
+    {
+       "currencyCode":"BIGTIME",
+       "currencyName":null,
+       "countryCode":null,
+       "countryName":null,
+       "status":"AVAILABLE",
+       "availableFrom":"2023-10-13",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/bigtime.png"
+    },
+    {
+       "currencyCode":"BDT",
+       "currencyName":"Bangladeshi Taka",
+       "countryCode":"BD",
+       "countryName":"Bangladesh",
+       "status":"AVAILABLE",
+       "availableFrom":"1989-08-18",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/bdt.png"
+    },
+    {
+       "currencyCode":"LYD",
+       "currencyName":"Libyan Dinar",
+       "countryCode":"LY",
+       "countryName":"Libya",
+       "status":"AVAILABLE",
+       "availableFrom":"1984-11-29",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/lyd.png"
+    },
+    {
+       "currencyCode":"KWD",
+       "currencyName":"Kuwaiti Dinar",
+       "countryCode":"KW",
+       "countryName":"Kuwait",
+       "status":"AVAILABLE",
+       "availableFrom":"1984-11-29",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/kwd.png"
+    },
+    {
+       "currencyCode":"ISK",
+       "currencyName":"Iceland Krona",
+       "countryCode":"IS",
+       "countryName":"Iceland",
+       "status":"AVAILABLE",
+       "availableFrom":"1989-08-18",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/isk.png"
+    },
+    {
+       "currencyCode":"PAB",
+       "currencyName":"Panamanian Balboa",
+       "countryCode":"PA",
+       "countryName":"Panama",
+       "status":"AVAILABLE",
+       "availableFrom":"1989-08-18",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/pab.png"
+    },
+    {
+       "currencyCode":"SGD",
+       "currencyName":"Singapore Dollar",
+       "countryCode":"SG",
+       "countryName":"Singapore",
+       "status":"AVAILABLE",
+       "availableFrom":"1985-10-02",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/sgd.png"
+    },
+    {
+       "currencyCode":"CHF",
+       "currencyName":"Swiss Franc",
+       "countryCode":"CH",
+       "countryName":"Switzerland",
+       "status":"AVAILABLE",
+       "availableFrom":"1984-11-28",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/chf.png"
+    },
+    {
+       "currencyCode":"HRK",
+       "currencyName":"Croatian Kuna",
+       "countryCode":"HR",
+       "countryName":"Croatia",
+       "status":"AVAILABLE",
+       "availableFrom":"1998-07-31",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/hrk.png"
+    },
+    {
+       "currencyCode":"DJF",
+       "currencyName":"Djibouti Franc",
+       "countryCode":"DJ",
+       "countryName":"Djibouti",
+       "status":"AVAILABLE",
+       "availableFrom":"1998-07-31",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/djf.png"
+    },
+    {
+       "currencyCode":"VND",
+       "currencyName":"Vietnamese Dong",
+       "countryCode":"VN",
+       "countryName":"Vietnam",
+       "status":"AVAILABLE",
+       "availableFrom":"1989-08-18",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/vnd.png"
+    },
+    {
+       "currencyCode":"KYD",
+       "currencyName":"Cayman Islands Dollar",
+       "countryCode":"KY",
+       "countryName":"Cayman Islands",
+       "status":"AVAILABLE",
+       "availableFrom":"1989-08-18",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/kyd.png"
+    },
+    {
+       "currencyCode":"SHP",
+       "currencyName":"Saint Helena Pound",
+       "countryCode":"SH",
+       "countryName":"Saint Helena",
+       "status":"AVAILABLE",
+       "availableFrom":"1998-07-31",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/shp.png"
+    },
+    {
+       "currencyCode":"TJS",
+       "currencyName":"Tajikistani Somoni",
+       "countryCode":"TJ",
+       "countryName":"Tajikistan",
+       "status":"AVAILABLE",
+       "availableFrom":"2011-09-12",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/tjs.png"
+    },
+    {
+       "currencyCode":"AED",
+       "currencyName":"UAE Dirham",
+       "countryCode":"AE",
+       "countryName":"United Arab Emirates",
+       "status":"AVAILABLE",
+       "availableFrom":"1989-08-18",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/aed.png"
+    },
+    {
+       "currencyCode":"DKK",
+       "currencyName":"Danish Krone",
+       "countryCode":"DK",
+       "countryName":"Denmark",
+       "status":"AVAILABLE",
+       "availableFrom":"1984-11-28",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/dkk.png"
+    },
+    {
+       "currencyCode":"ZWD",
+       "currencyName":"Zimbabwean Dollar",
+       "countryCode":"ZW",
+       "countryName":"Zimbabwe",
+       "status":"AVAILABLE",
+       "availableFrom":"2022-04-25",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/zwd.png"
+    },
+    {
+       "currencyCode":"BGN",
+       "currencyName":"Bulgarian Lev",
+       "countryCode":"BG",
+       "countryName":"Bulgaria",
+       "status":"AVAILABLE",
+       "availableFrom":"1998-08-31",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/bgn.png"
+    },
+    {
+       "currencyCode":"ZWL",
+       "currencyName":"Zimbabwean Dollar",
+       "countryCode":"ZW",
+       "countryName":"Zimbabwe",
+       "status":"AVAILABLE",
+       "availableFrom":"2021-03-18",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/zwl.png"
+    },
+    {
+       "currencyCode":"HTG",
+       "currencyName":"Haitian Gourde",
+       "countryCode":"HT",
+       "countryName":"Haiti",
+       "status":"AVAILABLE",
+       "availableFrom":"1989-08-18",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/htg.png"
+    },
+    {
+       "currencyCode":"BHD",
+       "currencyName":"Bahraini Dinar",
+       "countryCode":"BH",
+       "countryName":"Bahrain",
+       "status":"AVAILABLE",
+       "availableFrom":"1989-08-18",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/bhd.png"
+    },
+    {
+       "currencyCode":"KZT",
+       "currencyName":"Kazakhstani Tenge",
+       "countryCode":"KZ",
+       "countryName":"Kazakhstan",
+       "status":"AVAILABLE",
+       "availableFrom":"1998-07-31",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/kzt.png"
+    },
+    {
+       "currencyCode":"AFN",
+       "currencyName":"Afghan Afghani",
+       "countryCode":"AF",
+       "countryName":"Afghanistan",
+       "status":"AVAILABLE",
+       "availableFrom":"1989-08-18",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/afn.png"
+    },
+    {
+       "currencyCode":"HUF",
+       "currencyName":"Hungarian Forint",
+       "countryCode":"HU",
+       "countryName":"Hungary",
+       "status":"AVAILABLE",
+       "availableFrom":"1985-10-02",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/huf.png"
+    },
+    {
+       "currencyCode":"BIF",
+       "currencyName":"Burundian Franc",
+       "countryCode":"BI",
+       "countryName":"Burundi",
+       "status":"AVAILABLE",
+       "availableFrom":"1989-08-18",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/bif.png"
+    },
+    {
+       "currencyCode":"NAD",
+       "currencyName":"Namibian Dollar",
+       "countryCode":"NA",
+       "countryName":"Namibia",
+       "status":"AVAILABLE",
+       "availableFrom":"2009-09-28",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/nad.png"
+    },
+    {
+       "currencyCode":"SKK",
+       "currencyName":"Slovak Koruna",
+       "countryCode":"SK",
+       "countryName":"Slovakia",
+       "status":"AVAILABLE",
+       "availableFrom":"2022-12-09",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/skk.png"
+    },
+    {
+       "currencyCode":"TMM",
+       "currencyName":"Turkmenistan Manat",
+       "countryCode":"TM",
+       "countryName":"Turkmenistan",
+       "status":"AVAILABLE",
+       "availableFrom":"2022-12-09",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/tmm.png"
+    },
+    {
+       "currencyCode":"PEN",
+       "currencyName":"Peruvian Sol",
+       "countryCode":"PE",
+       "countryName":"Peru",
+       "status":"AVAILABLE",
+       "availableFrom":"1991-02-04",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/pen.png"
+    },
+    {
+       "currencyCode":"WST",
+       "currencyName":"Samoan T\\u0101l\\u0101",
+       "countryCode":"WS",
+       "countryName":"Samoa",
+       "status":"AVAILABLE",
+       "availableFrom":"2014-12-03",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/wst.png"
+    },
+    {
+       "currencyCode":"TMT",
+       "currencyName":"Turkmenistani Manat",
+       "countryCode":"TM",
+       "countryName":"Turkmenistan",
+       "status":"AVAILABLE",
+       "availableFrom":"2010-04-09",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/tmt.png"
+    },
+    {
+       "currencyCode":"CLF",
+       "currencyName":"Chilean Unit of Account (UF)",
+       "countryCode":"CL",
+       "countryName":"Chile",
+       "status":"AVAILABLE",
+       "availableFrom":"2021-03-18",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/clf.png"
+    },
+    {
+       "currencyCode":"GTQ",
+       "currencyName":"Guatemalan Quetzal",
+       "countryCode":"GT",
+       "countryName":"Guatemala",
+       "status":"AVAILABLE",
+       "availableFrom":"1989-08-18",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/gtq.png"
+    },
+    {
+       "currencyCode":"CLP",
+       "currencyName":"Chilean Peso",
+       "countryCode":"CL",
+       "countryName":"Chile",
+       "status":"AVAILABLE",
+       "availableFrom":"1984-11-29",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/clp.png"
+    },
+    {
+       "currencyCode":"TND",
+       "currencyName":"Tunisian Dinar",
+       "countryCode":"TN",
+       "countryName":"Tunisia",
+       "status":"AVAILABLE",
+       "availableFrom":"1989-08-18",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/tnd.png"
+    },
+    {
+       "currencyCode":"SLE",
+       "currencyName":"Sierra Leonean Leone",
+       "countryCode":"SL",
+       "countryName":"Sierra Leone",
+       "status":"AVAILABLE",
+       "availableFrom":"2022-07-13",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/sle.png"
+    },
+    {
+       "currencyCode":"SLL",
+       "currencyName":"Sierra Leonean Leone",
+       "countryCode":"SL",
+       "countryName":"Sierra Leone",
+       "status":"AVAILABLE",
+       "availableFrom":"1989-08-18",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/sll.png"
+    },
+    {
+       "currencyCode":"DOP",
+       "currencyName":"Dominican Peso",
+       "countryCode":"DO",
+       "countryName":"Dominican Republic",
+       "status":"AVAILABLE",
+       "availableFrom":"1989-08-18",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/dop.png"
+    },
+    {
+       "currencyCode":"MAD",
+       "currencyName":"Moroccan Dirham",
+       "countryCode":"EH",
+       "countryName":"Western Sahara",
+       "status":"AVAILABLE",
+       "availableFrom":"1989-08-18",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/mad.png"
+    },
+    {
+       "currencyCode":"TOP",
+       "currencyName":"Tongan Pa\\u02bbanga",
+       "countryCode":"TO",
+       "countryName":"Tonga",
+       "status":"AVAILABLE",
+       "availableFrom":"1998-07-31",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/top.png"
+    },
+    {
+       "currencyCode":"PGK",
+       "currencyName":"Papua New Guinean Kina",
+       "countryCode":"PG",
+       "countryName":"Papua New Guinea",
+       "status":"AVAILABLE",
+       "availableFrom":"1998-07-31",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/pgk.png"
+    },
+    {
+       "currencyCode":"CNH",
+       "currencyName":"Chinese Yuan Renminbi Offshore",
+       "countryCode":"CN",
+       "countryName":"China",
+       "status":"AVAILABLE",
+       "availableFrom":"2021-04-05",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/cnh.png"
+    },
+    {
+       "currencyCode":"ERN",
+       "currencyName":"Eritrean Nakfa",
+       "countryCode":"ER",
+       "countryName":"Eritrea",
+       "status":"AVAILABLE",
+       "availableFrom":"2011-09-12",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/ern.png"
+    },
+    {
+       "currencyCode":"CNY",
+       "currencyName":"Chinese Yuan Renminbi",
+       "countryCode":"CN",
+       "countryName":"China",
+       "status":"AVAILABLE",
+       "availableFrom":"1985-10-02",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/cny.png"
+    },
+    {
+       "currencyCode":"BMD",
+       "currencyName":"Bermudian Dollar",
+       "countryCode":"BM",
+       "countryName":"Bermuda",
+       "status":"AVAILABLE",
+       "availableFrom":"1989-08-18",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/bmd.png"
+    },
+    {
+       "currencyCode":"PHP",
+       "currencyName":"Philippine Piso",
+       "countryCode":"PH",
+       "countryName":"Philippines",
+       "status":"AVAILABLE",
+       "availableFrom":"1984-11-29",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/php.png"
+    },
+    {
+       "currencyCode":"COP",
+       "currencyName":"Colombian Peso",
+       "countryCode":"CO",
+       "countryName":"Colombia",
+       "status":"AVAILABLE",
+       "availableFrom":"1984-11-29",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/cop.png"
+    },
+    
+    {
+       "currencyCode":"ETB",
+       "currencyName":"Ethiopian Birr",
+       "countryCode":"ET",
+       "countryName":"Ethiopia",
+       "status":"AVAILABLE",
+       "availableFrom":"1989-08-18",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/etb.png"
+    },
+    {
+       "currencyCode":"SOS",
+       "currencyName":"Somali Shilling",
+       "countryCode":"SO",
+       "countryName":"Somalia",
+       "status":"AVAILABLE",
+       "availableFrom":"1989-08-18",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/sos.png"
+    },
+    {
+       "currencyCode":"VUV",
+       "currencyName":"Vanuatu Vatu",
+       "countryCode":"VU",
+       "countryName":"Vanuatu",
+       "status":"AVAILABLE",
+       "availableFrom":"1998-07-31",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/vuv.png"
+    },
+    {
+       "currencyCode":"LAK",
+       "currencyName":"Laotian Kip",
+       "countryCode":"LA",
+       "countryName":"Laos",
+       "status":"AVAILABLE",
+       "availableFrom":"1998-07-31",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/lak.png"
+    },
+    {
+       "currencyCode":"BND",
+       "currencyName":"Brunei Dollar",
+       "countryCode":"BN",
+       "countryName":"Brunei",
+       "status":"AVAILABLE",
+       "availableFrom":"1998-07-31",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/bnd.png"
+    },
+    {
+       "currencyCode":"ALL",
+       "currencyName":"Albanian Lek",
+       "countryCode":"AL",
+       "countryName":"Albania",
+       "status":"AVAILABLE",
+       "availableFrom":"1998-07-31",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/all.png"
+    },
+    {
+       "currencyCode":"GYD",
+       "currencyName":"Guyana Dollar",
+       "countryCode":"GY",
+       "countryName":"Guyana",
+       "status":"AVAILABLE",
+       "availableFrom":"1985-01-28",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/gyd.png"
+    },
+    {
+       "currencyCode":"BOB",
+       "currencyName":"Bolivian Boliviano",
+       "countryCode":"BO",
+       "countryName":"Bolivia",
+       "status":"AVAILABLE",
+       "availableFrom":"1993-09-20",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/bob.png"
+    },
+    {
+       "currencyCode":"MDL",
+       "currencyName":"Moldovan Leu",
+       "countryCode":"MD",
+       "countryName":"Moldova",
+       "status":"AVAILABLE",
+       "availableFrom":"1998-08-31",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/mdl.png"
+    },
+    {
+       "currencyCode":"AMD",
+       "currencyName":"Armenian Dram",
+       "countryCode":"AM",
+       "countryName":"Armenia",
+       "status":"AVAILABLE",
+       "availableFrom":"2009-09-28",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/amd.png"
+    },
+    {
+       "currencyCode":"TRY",
+       "currencyName":"Turkish Lira",
+       "countryCode":"TR",
+       "countryName":"Turkey",
+       "status":"AVAILABLE",
+       "availableFrom":"2006-08-24",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/try.png"
+    },
+    {
+       "currencyCode":"LBP",
+       "currencyName":"Lebanese Pound",
+       "countryCode":"LB",
+       "countryName":"Lebanon",
+       "status":"AVAILABLE",
+       "availableFrom":"1989-08-18",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/lbp.png"
+    },
+    {
+       "currencyCode":"EUR",
+       "currencyName":"Euro",
+       "countryCode":"AD",
+       "countryName":"Andorra",
+       "status":"AVAILABLE",
+       "availableFrom":"1998-12-31",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/eur.png"
+    },
+    {
+       "currencyCode":"RON",
+       "currencyName":"Romanian Leu",
+       "countryCode":"RO",
+       "countryName":"Romania",
+       "status":"AVAILABLE",
+       "availableFrom":"2008-01-25",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/ron.png"
+    },
+    {
+       "currencyCode":"NGN",
+       "currencyName":"Nigerian Naira",
+       "countryCode":"NG",
+       "countryName":"Nigeria",
+       "status":"AVAILABLE",
+       "availableFrom":"1984-11-29",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/ngn.png"
+    },
+    {
+       "currencyCode":"CRC",
+       "currencyName":"Costa Rican Colon",
+       "countryCode":"CR",
+       "countryName":"Costa Rica",
+       "status":"AVAILABLE",
+       "availableFrom":"1989-08-18",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/crc.png"
+    },
+    {
+       "currencyCode":"PKR",
+       "currencyName":"Pakistani Rupee",
+       "countryCode":"PK",
+       "countryName":"Pakistan",
+       "status":"AVAILABLE",
+       "availableFrom":"1985-10-02",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/pkr.png"
+    },
+    {
+       "currencyCode":"ANG",
+       "currencyName":"Netherlands Antillean Guilder",
+       "countryCode":"CW",
+       "countryName":"Curacao",
+       "status":"AVAILABLE",
+       "availableFrom":"1985-10-02",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/ang.png"
+    },
+    {
+       "currencyCode":"SRD",
+       "currencyName":"Surinamese Dollar",
+       "countryCode":"SR",
+       "countryName":"Suriname",
+       "status":"AVAILABLE",
+       "availableFrom":"2005-09-06",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/srd.png"
+    },
+    {
+       "currencyCode":"TTD",
+       "currencyName":"Trinidad and Tobago Dollar",
+       "countryCode":"TT",
+       "countryName":"Trinidad and Tobago",
+       "status":"AVAILABLE",
+       "availableFrom":"1985-10-02",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/ttd.png"
+    },
+    {
+       "currencyCode":"AOA",
+       "currencyName":"Angolan Kwanza",
+       "countryCode":"AO",
+       "countryName":"Angola",
+       "status":"AVAILABLE",
+       "availableFrom":"1995-06-29",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/aoa.png"
+    },
+    {
+       "currencyCode":"PLN",
+       "currencyName":"Polish Zloty",
+       "countryCode":"PL",
+       "countryName":"Poland",
+       "status":"AVAILABLE",
+       "availableFrom":"1985-10-02",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/pln.png"
+    },
+    {
+       "currencyCode":"MGA",
+       "currencyName":"Malagasy Ariary",
+       "countryCode":"MG",
+       "countryName":"Madagascar",
+       "status":"AVAILABLE",
+       "availableFrom":"2009-09-28",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/mga.png"
+    },
+    {
+       "currencyCode":"SSP",
+       "currencyName":"South Sudanese Pound",
+       "countryCode":"SS",
+       "countryName":"Republic of South Sudan",
+       "status":"AVAILABLE",
+       "availableFrom":"2021-04-05",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/ssp.png"
+    },
+    {
+       "currencyCode":"NIO",
+       "currencyName":"Nicaraguan C\\u00f3rdoba",
+       "countryCode":"NI",
+       "countryName":"Nicaragua",
+       "status":"AVAILABLE",
+       "availableFrom":"1998-07-31",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/nio.png"
+    },
+    {
+       "currencyCode":"BRL",
+       "currencyName":"Brazilian Real",
+       "countryCode":"BR",
+       "countryName":"Brazil",
+       "status":"AVAILABLE",
+       "availableFrom":"1996-04-01",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/brl.png"
+    },
+    {
+       "currencyCode":"STD",
+       "currencyName":"S\\u00e3o Tom\\u00e9 and Pr\\u00edncipe Dobra",
+       "countryCode":"ST",
+       "countryName":"S\\u00e3o Tom\\u00e9 and Pr\\u00edncipe",
+       "status":"AVAILABLE",
+       "availableFrom":"1998-08-31",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/std.png"
+    },
+    {
+       "currencyCode":"ZAR",
+       "currencyName":"South African Rand",
+       "countryCode":"ZA",
+       "countryName":"South Africa",
+       "status":"AVAILABLE",
+       "availableFrom":"1985-10-02",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/zar.png"
+    },
+    {
+       "currencyCode":"STN",
+       "currencyName":"S\\u00e3o Tom\\u00e9 and Pr\\u00edncipe Dobra",
+       "countryCode":"ST",
+       "countryName":"S\\u00e3o Tom\\u00e9 and Pr\\u00edncipe",
+       "status":"AVAILABLE",
+       "availableFrom":"2020-12-15",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/stn.png"
+    },
+    {
+       "currencyCode":"CUC",
+       "currencyName":"Cuban Convertible Peso",
+       "countryCode":"CU",
+       "countryName":"Cuba",
+       "status":"AVAILABLE",
+       "availableFrom":"2019-02-05",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/cuc.png"
+    },
+    {
+       "currencyCode":"BSD",
+       "currencyName":"Bahamian Dollar",
+       "countryCode":"BS",
+       "countryName":"Bahamas",
+       "status":"AVAILABLE",
+       "availableFrom":"1989-08-18",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/bsd.png"
+    },
+    {
+       "currencyCode":"CUP",
+       "currencyName":"Cuban Peso",
+       "countryCode":"CU",
+       "countryName":"Cuba",
+       "status":"AVAILABLE",
+       "availableFrom":"1998-07-31",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/cup.png"
+    },
+    {
+       "currencyCode":"TWD",
+       "currencyName":"New Taiwan Dollar",
+       "countryCode":"TW",
+       "countryName":"Taiwan",
+       "status":"AVAILABLE",
+       "availableFrom":"1985-10-02",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/twd.png"
+    },
+    {
+       "currencyCode":"RSD",
+       "currencyName":"Serbian Dinar",
+       "countryCode":"RS",
+       "countryName":"Serbia",
+       "status":"AVAILABLE",
+       "availableFrom":"2004-02-27",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/rsd.png"
+    },
+    {
+       "currencyCode":"UYU",
+       "currencyName":"Uruguayan Peso",
+       "countryCode":"UY",
+       "countryName":"Uruguay",
+       "status":"AVAILABLE",
+       "availableFrom":"1993-03-02",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/uyu.png"
+    },
+    {
+       "currencyCode":"CVE",
+       "currencyName":"Cape Verdean Escudo",
+       "countryCode":"CV",
+       "countryName":"Cape Verde",
+       "status":"AVAILABLE",
+       "availableFrom":"1998-08-31",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/cve.png"
+    },
+    {
+       "currencyCode":"OMR",
+       "currencyName":"Omani Rial",
+       "countryCode":"OM",
+       "countryName":"Oman",
+       "status":"AVAILABLE",
+       "availableFrom":"1989-08-18",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/omr.png"
+    },
+    {
+       "currencyCode":"KES",
+       "currencyName":"Kenyan Shilling",
+       "countryCode":"KE",
+       "countryName":"Kenya",
+       "status":"AVAILABLE",
+       "availableFrom":"1989-08-18",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/kes.png"
+    },
+    {
+       "currencyCode":"BTN",
+       "currencyName":"Bhutanese Ngultrum",
+       "countryCode":"BT",
+       "countryName":"Bhutan",
+       "status":"AVAILABLE",
+       "availableFrom":"1998-07-31",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/btn.png"
+    },
+    {
+       "currencyCode":"SVC",
+       "currencyName":"Salvadoran Col\\u00f3n",
+       "countryCode":"SV",
+       "countryName":"El Salvador",
+       "status":"AVAILABLE",
+       "availableFrom":"1989-08-18",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/svc.png"
+    },
+    {
+       "currencyCode":"ARS",
+       "currencyName":"Argentine Peso",
+       "countryCode":"AR",
+       "countryName":"Argentina",
+       "status":"AVAILABLE",
+       "availableFrom":"1992-01-02",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/ars.png"
+    },
+    {
+       "currencyCode":"UZS",
+       "currencyName":"Uzbekistani Som",
+       "countryCode":"UZ",
+       "countryName":"Uzbekistan",
+       "status":"AVAILABLE",
+       "availableFrom":"1998-07-31",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/uzs.png"
+    },
+    {
+       "currencyCode":"RUB",
+       "currencyName":"Russian Ruble",
+       "countryCode":"RU",
+       "countryName":"Russia",
+       "status":"AVAILABLE",
+       "availableFrom":"1985-10-02",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/rub.png"
+    },
+    {
+       "currencyCode":"MKD",
+       "currencyName":"Macedonian Denar",
+       "countryCode":"MK",
+       "countryName":"Macedonia",
+       "status":"AVAILABLE",
+       "availableFrom":"1995-06-01",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/mkd.png"
+    },
+    {
+       "currencyCode":"DZD",
+       "currencyName":"Algerian Dinar",
+       "countryCode":"DZ",
+       "countryName":"Algeria",
+       "status":"AVAILABLE",
+       "availableFrom":"1989-08-18",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/dzd.png"
+    },
+    {
+       "currencyCode":"JEP",
+       "currencyName":"Jersey Pound",
+       "countryCode":"JE",
+       "countryName":"Jersey",
+       "status":"AVAILABLE",
+       "availableFrom":"2019-02-05",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/jep.png"
+    },
+    {
+       "currencyCode":"KGS",
+       "currencyName":"Kyrgyzstani Som",
+       "countryCode":"KG",
+       "countryName":"Kyrgyzstan",
+       "status":"AVAILABLE",
+       "availableFrom":"2011-09-12",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/kgs.png"
+    },
+    {
+       "currencyCode":"XAF",
+       "currencyName":"Central African CFA franc",
+       "countryCode":"CF",
+       "countryName":"Central African Republic",
+       "status":"AVAILABLE",
+       "availableFrom":"1984-11-29",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/xaf.png"
+    },
+    {
+       "currencyCode":"TZS",
+       "currencyName":"Tanzanian Shilling",
+       "countryCode":"TZ",
+       "countryName":"Tanzania",
+       "status":"AVAILABLE",
+       "availableFrom":"1998-07-31",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/tzs.png"
+    },
+    {
+       "currencyCode":"AUD",
+       "currencyName":"Australian Dollar",
+       "countryCode":"AU",
+       "countryName":"Australia",
+       "status":"AVAILABLE",
+       "availableFrom":"1984-11-28",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/aud.png"
+    },
+    {
+       "currencyCode":"KHR",
+       "currencyName":"Cambodian Riel",
+       "countryCode":"KH",
+       "countryName":"Cambodia",
+       "status":"AVAILABLE",
+       "availableFrom":"1998-07-31",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/khr.png"
+    },
+    {
+       "currencyCode":"IDR",
+       "currencyName":"Indonesian Rupiah",
+       "countryCode":"ID",
+       "countryName":"Indonesia",
+       "status":"AVAILABLE",
+       "availableFrom":"1989-08-18",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/idr.png"
+    },
+    {
+       "currencyCode":"BWP",
+       "currencyName":"Botswanan Pula",
+       "countryCode":"BW",
+       "countryName":"Botswana",
+       "status":"AVAILABLE",
+       "availableFrom":"1998-07-31",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/bwp.png"
+    },
+    {
+       "currencyCode":"RWF",
+       "currencyName":"Rwandan Franc",
+       "countryCode":"RW",
+       "countryName":"Rwanda",
+       "status":"AVAILABLE",
+       "availableFrom":"1984-11-29",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/rwf.png"
+    },
+    {
+       "currencyCode":"MMK",
+       "currencyName":"Burmese Kyat",
+       "countryCode":"MM",
+       "countryName":"Myanmar",
+       "status":"AVAILABLE",
+       "availableFrom":"1989-08-18",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/mmk.png"
+    },
+    {
+       "currencyCode":"NOK",
+       "currencyName":"Norwegian Krone",
+       "countryCode":"BV",
+       "countryName":"Bouvet Island",
+       "status":"AVAILABLE",
+       "availableFrom":"1984-11-28",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/nok.png"
+    },
+    {
+       "currencyCode":"SYP",
+       "currencyName":"Syrian Pound",
+       "countryCode":"SY",
+       "countryName":"Syria",
+       "status":"AVAILABLE",
+       "availableFrom":"1989-08-18",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/syp.png"
+    },
+    {
+       "currencyCode":"LKR",
+       "currencyName":"Sri Lankan Rupee",
+       "countryCode":"LK",
+       "countryName":"Sri Lanka",
+       "status":"AVAILABLE",
+       "availableFrom":"1989-08-18",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/lkr.png"
+    },
+    {
+       "currencyCode":"CZK",
+       "currencyName":"Czech Koruna",
+       "countryCode":"CZ",
+       "countryName":"Czech Republic",
+       "status":"AVAILABLE",
+       "availableFrom":"1985-10-02",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/czk.png"
+    },
+    {
+       "currencyCode":"XCD",
+       "currencyName":"East Caribbean Dollar",
+       "countryCode":"AG",
+       "countryName":"Antigua and Barbuda",
+       "status":"AVAILABLE",
+       "availableFrom":"1989-08-18",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/xcd.png"
+    },
+    {
+       "currencyCode":"SZL",
+       "currencyName":"Swazi Lilangeni",
+       "countryCode":"SZ",
+       "countryName":"Eswatini",
+       "status":"AVAILABLE",
+       "availableFrom":"1998-07-31",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/szl.png"
+    },
+    {
+       "currencyCode":"YER",
+       "currencyName":"Yemeni Rial",
+       "countryCode":"YE",
+       "countryName":"Yemen",
+       "status":"AVAILABLE",
+       "availableFrom":"1989-08-18",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/yer.png"
+    },
+    {
+       "currencyCode":"AWG",
+       "currencyName":"Aruban Florin",
+       "countryCode":"AW",
+       "countryName":"Aruba",
+       "status":"AVAILABLE",
+       "availableFrom":"1998-07-31",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/awg.png"
+    },
+    {
+       "currencyCode":"NPR",
+       "currencyName":"Nepalese Rupee",
+       "countryCode":"NP",
+       "countryName":"Nepal",
+       "status":"AVAILABLE",
+       "availableFrom":"1989-08-18",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/npr.png"
+    },
+    {
+       "currencyCode":"MNT",
+       "currencyName":"Mongolian T\\u00f6gr\\u00f6g",
+       "countryCode":"MN",
+       "countryName":"Mongolia",
+       "status":"AVAILABLE",
+       "availableFrom":"1998-07-31",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/mnt.png"
+    },
+    {
+       "currencyCode":"GBP",
+       "currencyName":"Pound Sterling",
+       "countryCode":"GB",
+       "countryName":"United Kingdom",
+       "status":"AVAILABLE",
+       "availableFrom":"1984-11-28",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/gbp.png"
+    },
+    {
+       "currencyCode":"BYN",
+       "currencyName":"New Belarusian Ruble",
+       "countryCode":"BY",
+       "countryName":"Belarus",
+       "status":"AVAILABLE",
+       "availableFrom":"2016-07-01",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/byn.png"
+    },
+    {
+       "currencyCode":"BYR",
+       "currencyName":"Belarusian Ruble",
+       "countryCode":"BY",
+       "countryName":"Belarus",
+       "status":"AVAILABLE",
+       "availableFrom":"1998-11-30",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/byr.png"
+    },
+    {
+       "currencyCode":"GBX",
+       "currencyName":"Penny Sterling",
+       "countryCode":"UK",
+       "countryName":"United Kingdom",
+       "status":"DEPRECIATED",
+       "availableFrom":"2021-04-05",
+       "availableUntil":"2023-03-15",
+       "icon":"https://currencyfreaks.com/photos/flags/gbx.png"
+    },
+    {
+       "currencyCode":"BZD",
+       "currencyName":"Belize Dollar",
+       "countryCode":"BZ",
+       "countryName":"Belize",
+       "status":"AVAILABLE",
+       "availableFrom":"1998-07-31",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/bzd.png"
+    },
+    {
+       "currencyCode":"MOP",
+       "currencyName":"Macau Pataca",
+       "countryCode":"MO",
+       "countryName":"Macao",
+       "status":"AVAILABLE",
+       "availableFrom":"1989-08-18",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/mop.png"
+    },
+    {
+       "currencyCode":"KMF",
+       "currencyName":"Comorian Franc",
+       "countryCode":"KM",
+       "countryName":"Comoros",
+       "status":"AVAILABLE",
+       "availableFrom":"1998-07-31",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/kmf.png"
+    },
+    {
+       "currencyCode":"GEL",
+       "currencyName":"Georgian Lari",
+       "countryCode":"GE",
+       "countryName":"Georgia",
+       "status":"AVAILABLE",
+       "availableFrom":"1998-08-31",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/gel.png"
+    },
+    {
+       "currencyCode":"AZN",
+       "currencyName":"Azerbaijani Manat",
+       "countryCode":"AZ",
+       "countryName":"Azerbaijan",
+       "status":"AVAILABLE",
+       "availableFrom":"2011-07-15",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/azn.png"
+    },
+    {
+       "currencyCode":"UAH",
+       "currencyName":"Ukrainian Hryvnia",
+       "countryCode":"UA",
+       "countryName":"Ukraine",
+       "status":"AVAILABLE",
+       "availableFrom":"1998-08-31",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/uah.png"
+    },
+    {
+       "currencyCode":"MRO",
+       "currencyName":"Mauritanian Ouguiya",
+       "countryCode":"MR",
+       "countryName":"Mauritania",
+       "status":"AVAILABLE",
+       "availableFrom":"1989-08-18",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/mro.png"
+    },
+    {
+       "currencyCode":"MRU",
+       "currencyName":"Mauritanian Ouguiya",
+       "countryCode":"MR",
+       "countryName":"Mauritania",
+       "status":"AVAILABLE",
+       "availableFrom":"2018-01-29",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/mru.png"
+    },
+    {
+       "currencyCode":"PYG",
+       "currencyName":"Paraguayan Guaran\\u00ed",
+       "countryCode":"PY",
+       "countryName":"Paraguay",
+       "status":"AVAILABLE",
+       "availableFrom":"1984-11-29",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/pyg.png"
+    },
+    {
+       "currencyCode":"JMD",
+       "currencyName":"Jamaican Dollar",
+       "countryCode":"JM",
+       "countryName":"Jamaica",
+       "status":"AVAILABLE",
+       "availableFrom":"1989-08-18",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/jmd.png"
+    },
+    {
+       "currencyCode":"GGP",
+       "currencyName":"Guernsey Pound",
+       "countryCode":"GG",
+       "countryName":"Guernsey",
+       "status":"AVAILABLE",
+       "availableFrom":"2019-02-05",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/ggp.png"
+    },
+    {
+       "currencyCode":"VEF",
+       "currencyName":"Venezuelan Bol\\u00edvar Fuerte",
+       "countryCode":"VE",
+       "countryName":"Venezuela",
+       "status":"AVAILABLE",
+       "availableFrom":"2008-01-02",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/vef.png"
+    },
+    {
+       "currencyCode":"ZMK",
+       "currencyName":"Zambian Kwacha",
+       "countryCode":"ZM",
+       "countryName":"Zambia",
+       "status":"AVAILABLE",
+       "availableFrom":"2022-12-09",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/zmk.png"
+    },
+    {
+       "currencyCode":"LRD",
+       "currencyName":"Liberian Dollar",
+       "countryCode":"LR",
+       "countryName":"Liberia",
+       "status":"AVAILABLE",
+       "availableFrom":"1989-08-18",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/lrd.png"
+    },
+    {
+       "currencyCode":"MTL",
+       "currencyName":"Maltese Lira",
+       "countryCode":"MT",
+       "countryName":"Malta",
+       "status":"AVAILABLE",
+       "availableFrom":"2022-07-20",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/mtl.png"
+    },
+    {
+       "currencyCode":"VES",
+       "currencyName":"Venezuelan Bol\\u00edvar",
+       "countryCode":"VE",
+       "countryName":"Venezuela",
+       "status":"AVAILABLE",
+       "availableFrom":"2018-12-13",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/ves.png"
+    },
+    {
+       "currencyCode":"ZMW",
+       "currencyName":"Zambian Kwacha",
+       "countryCode":"ZM",
+       "countryName":"Zambia",
+       "status":"AVAILABLE",
+       "availableFrom":"2013-01-03",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/zmw.png"
+    },
+    {
+       "currencyCode":"ILS",
+       "currencyName":"New Israeli Sheqel",
+       "countryCode":"IL",
+       "countryName":"Israel",
+       "status":"AVAILABLE",
+       "availableFrom":"1985-10-02",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/ils.png"
+    },
+    {
+       "currencyCode":"GHS",
+       "currencyName":"Ghanaian Cedi",
+       "countryCode":"GH",
+       "countryName":"Ghana",
+       "status":"AVAILABLE",
+       "availableFrom":"1989-08-18",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/ghs.png"
+    },
+    {
+       "currencyCode":"KPW",
+       "currencyName":"North Korean Won",
+       "countryCode":"KP",
+       "countryName":"North Korea",
+       "status":"AVAILABLE",
+       "availableFrom":"1998-07-31",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/kpw.png"
+    },
+    {
+       "currencyCode":"JOD",
+       "currencyName":"Jordanian Dinar",
+       "countryCode":"JO",
+       "countryName":"Jordan",
+       "status":"AVAILABLE",
+       "availableFrom":"1989-08-18",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/jod.png"
+    },
+    {
+       "currencyCode":"HKD",
+       "currencyName":"Hong Kong Dollar",
+       "countryCode":"HK",
+       "countryName":"Hong Kong",
+       "status":"AVAILABLE",
+       "availableFrom":"1985-10-02",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/hkd.png"
+    },
+    {
+       "currencyCode":"LSL",
+       "currencyName":"Lesotho Loti",
+       "countryCode":"LS",
+       "countryName":"Lesotho",
+       "status":"AVAILABLE",
+       "availableFrom":"1998-07-31",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/lsl.png"
+    },
+    {
+       "currencyCode":"CAD",
+       "currencyName":"Canadian Dollar",
+       "countryCode":"CA",
+       "countryName":"Canada",
+       "status":"AVAILABLE",
+       "availableFrom":"1984-11-28",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/cad.png"
+    },
+    {
+       "currencyCode":"EEK",
+       "currencyName":"Estonian Kroon",
+       "countryCode":"EE",
+       "countryName":"Estonia",
+       "status":"AVAILABLE",
+       "availableFrom":"2022-12-09",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/eek.png"
+    },
+    {
+       "currencyCode":"MUR",
+       "currencyName":"Mauritius Rupee",
+       "countryCode":"MU",
+       "countryName":"Mauritius",
+       "status":"AVAILABLE",
+       "availableFrom":"1989-08-18",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/mur.png"
+    },
+    {
+       "currencyCode":"IMP",
+       "currencyName":"Isle of Man Pound",
+       "countryCode":"IM",
+       "countryName":"Isle of Man",
+       "status":"AVAILABLE",
+       "availableFrom":"2019-02-05",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/imp.png"
+    },
+    {
+       "currencyCode":"GIP",
+       "currencyName":"Gibraltar Pound",
+       "countryCode":"GI",
+       "countryName":"Gibraltar",
+       "status":"AVAILABLE",
+       "availableFrom":"1998-07-31",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/gip.png"
+    },
+    {
+       "currencyCode":"LTL",
+       "currencyName":"Lithuanian Litas",
+       "countryCode":"LT",
+       "countryName":"Lithuania",
+       "status":"AVAILABLE",
+       "availableFrom":"2022-12-09",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/ltl.png"
+    },
+    {
+       "currencyCode":"SAR",
+       "currencyName":"Saudi Riyal",
+       "countryCode":"SA",
+       "countryName":"Saudi Arabia",
+       "status":"AVAILABLE",
+       "availableFrom":"1984-11-29",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/sar.png"
+    },
+    {
+       "currencyCode":"MVR",
+       "currencyName":"Maldivian Rufiyaa",
+       "countryCode":"MV",
+       "countryName":"Maldives",
+       "status":"AVAILABLE",
+       "availableFrom":"1998-07-31",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/mvr.png"
+    },
+    {
+       "currencyCode":"INR",
+       "currencyName":"Indian Rupee",
+       "countryCode":"IN",
+       "countryName":"India",
+       "status":"AVAILABLE",
+       "availableFrom":"1985-10-02",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/inr.png"
+    },
+    {
+       "currencyCode":"KRW",
+       "currencyName":"South Korean Won",
+       "countryCode":"KR",
+       "countryName":"South Korea",
+       "status":"AVAILABLE",
+       "availableFrom":"1989-08-18",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/krw.png"
+    },
+    {
+       "currencyCode":"JPY",
+       "currencyName":"Japanese Yen",
+       "countryCode":"JP",
+       "countryName":"Japan",
+       "status":"AVAILABLE",
+       "availableFrom":"1984-11-28",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/jpy.png"
+    },
+    {
+       "currencyCode":"SBD",
+       "currencyName":"Solomon Islands Dollar",
+       "countryCode":"SB",
+       "countryName":"Solomon Islands",
+       "status":"AVAILABLE",
+       "availableFrom":"1998-07-31",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/sbd.png"
+    },
+    {
+       "currencyCode":"MWK",
+       "currencyName":"Malawian Kwacha",
+       "countryCode":"MW",
+       "countryName":"Malawi",
+       "status":"AVAILABLE",
+       "availableFrom":"1989-08-18",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/mwk.png"
+    },
+    {
+       "currencyCode":"BAM",
+       "currencyName":"Bosnia-Herzegovina Convertible Mark",
+       "countryCode":"BA",
+       "countryName":"Bosnia and Herzegovina",
+       "status":"AVAILABLE",
+       "availableFrom":"1998-10-30",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/bam.png"
+    },
+    {
+       "currencyCode":"EGP",
+       "currencyName":"Egyptian Pound",
+       "countryCode":"EG",
+       "countryName":"Egypt",
+       "status":"AVAILABLE",
+       "availableFrom":"1985-01-28",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/egp.png"
+    },
+    {
+       "currencyCode":"NZD",
+       "currencyName":"New Zealand Dollar",
+       "countryCode":"CK",
+       "countryName":"Cook Islands",
+       "status":"AVAILABLE",
+       "availableFrom":"1985-10-02",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/nzd.png"
+    },
+    {
+       "currencyCode":"TIA",
+       "currencyName":null,
+       "countryCode":null,
+       "countryName":null,
+       "status":"AVAILABLE",
+       "availableFrom":"2023-11-01",
+       "availableUntil":"2023-11-05",
+       "icon":"https://currencyfreaks.com/photos/flags/tia.png"
+    }
+ ]

@@ -8,36 +8,57 @@ import CustomizedAccordions from '../Components/Accordion';
 import MaterialButton from '../Components/MaterialButton';
 import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css';
-import { doc, setDoc } from 'firebase/firestore';
-import { auth } from '../firebase';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import EmailIcon from '@mui/icons-material/Email';
-import Footer from '../Components/Footer';
+import { getDoc } from 'firebase/firestore';
+import { doc } from 'firebase/firestore';
+
 
 const ProductDetail = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
+  const nameParam = queryParams.get('category');
   const indexParam = queryParams.get('index');
+
   const [productsData, setProductsData] = useState([]);
   const [selectedImage, setSelectedImage] = useState('');
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const querySnapshot = await getDocs(collection(db, 'products'));
-        const data = [];
+  const [selectedCode,setSelectedCode] = useState(localStorage.getItem('selectedCode') || "USD");
 
-        querySnapshot.forEach((doc) => {
-          data.push({ id: doc.id, ...doc.data() });
+  const [rate, setRate] = useState(1);
+
+
+  useEffect(() => {
+    
+    fetch(`https://api.currencyfreaks.com/v2.0/rates/latest?apikey=596b192be02d41e1b86c2d6a92e56801&symbols=${selectedCode}`)
+    .then((response) => response.json())
+    .then((data) => setRate(data["rates"][selectedCode]));
+    const fetchData = async () => {
+
+      const docRef = doc(db, 'products', 'products');
+      const docSnap = await getDoc(docRef);
+
+      // Check if the document exists
+      if (docSnap.exists()) {
+        const allProducts = docSnap.data().all;
+
+        // Filter products based on category name (nameParam)
+        const filteredProducts = allProducts.filter(product => {
+          // Assuming each product has a 'category' property
+          return product.category.categoryName === nameParam;
         });
 
-        setProductsData(data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
+        console.log(filteredProducts);
+
+        setProductsData(filteredProducts);
+
+        // Log the filtered products for debugging
+        console.log('Filtered Products:', filteredProducts);
+
+        // Now you can use filteredProducts to set your state or perform other actions
+        // setProductsData(filteredProducts);
+      } else {
+        console.log('No data found for the specified document.');
       }
     };
 
@@ -48,6 +69,7 @@ const ProductDetail = () => {
     if (productsData.length > 0 && indexParam !== null && indexParam >= 0 && indexParam < productsData.length) {
       const imageUrls = productsData[indexParam].images;
       setSelectedImage(imageUrls[0]);
+
     }
   }, [productsData, indexParam]);
 
@@ -192,11 +214,7 @@ const ProductDetail = () => {
     setLightboxOpen(true);
   };
 
-  const generateWhatsAppShareLink = () => {
-    const currentURL = window.location.href;
-    const encodedURL = encodeURIComponent(currentURL);
-    return `https://wa.me/?text=${encodedURL}`;
-  };
+
 
   async function addtoCart() {
     const cartKey = 'cartData'; // Key for storing cart data in local storage
@@ -354,21 +372,12 @@ const ProductDetail = () => {
   return (
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between" }}>
       <Navbar></Navbar>
+      {/* <h1>{selectedCode} {rate}</h1> */}
       <ProductContainer>
         <LeftColumn>
           <Title>{productsData[indexParam].productName}</Title>
-          <SubTitle>USD ${productsData[indexParam].productPrice}</SubTitle>
-          {/* <IconContainer>
-            <a href={generateWhatsAppShareLink()} target="_blank" rel="noopener noreferrer">
-              <FontAwesomeIcon icon={faWhatsapp} size="2x" style={{ color: 'green' }} />
-            </a>
-            <a href="mailto:your@email.com" target="_blank" rel="noopener noreferrer">
-              <EmailIcon color="primary" fontSize="large" />
-            </a>
-            <a href="https://www.instagram.com/your_instagram" target="_blank" rel="noopener noreferrer">
-              <InstagramIcon style={{ color: '#e4405f' }} fontSize="large" />
-            </a>
-          </IconContainer> */}
+          {/* <SubTitle>{`${selectedCode} ${(productsData[indexParam].productPrice * rate).toFixed(0)}`}</SubTitle> */}
+
           <CustomizedAccordions title={'Description'} paragraph={productsData[indexParam].description} />
 
         </LeftColumn>

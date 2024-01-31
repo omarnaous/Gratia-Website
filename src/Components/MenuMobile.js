@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { useEffect } from 'react';
 import CancelIcon from '@mui/icons-material/Cancel';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
@@ -12,75 +13,9 @@ import Cart from '../Pages/cart';
 import { auth } from '../firebase';
 import AdminPanel from '../Pages/adminpanel';
 import Wishlist from '../Pages/Wishlist';
+import { MenuContainer, CloseButton,Header,ListContainer,MenuItemContainer,MenuItemInfo,MenuItemName,MenuItemPrice,Title } from '../Styles/menustyle';
 
-const MenuContainer = styled.div`
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 80%;
-  height: 100vh;
-  background-color: white;
-  box-shadow: -5px 0 10px rgba(0, 0, 0, 0.2);
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-`;
 
-const Header = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  margin-right: 10px;
-`;
-
-const Title = styled.h1`
-  margin: 0;
-`;
-
-const CloseButton = styled.button`
-  background: none;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
-`;
-
-const ListContainer = styled.div`
-  flex: 1;
-  width: 100%;
-  margin: 10px;
-  overflow-y: scroll;
-`;
-
-const MenuItemContainer = styled.div`
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  padding: 10px;
-  width: 100%;
-  margin-bottom: 10px;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  a {
-    text-decoration: none;
-    color: black;
-  }
-`;
-
-const MenuItemInfo = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-left: 10px;
-`;
-
-const MenuItemName = styled.h2`
-  font-weight: bold;
-  margin: 0;
-`;
-
-const MenuItemPrice = styled.h3`
-  margin: 0;
-`;
 
 const MenuMobile = ({ onClose }) => {
   const [isCartDialogOpen, setIsCartDialogOpen] = useState(false);
@@ -88,12 +23,19 @@ const MenuMobile = ({ onClose }) => {
   const [isRegisterDialogOpen, setIsRegisterDialogOpen] = useState(false);
   const [isAdminDialog, setIsAdminDialog] = useState(false);
   const [isWishlistDialogOpen, setIsWishlistDialogOpen] = useState(false);
+  const [user, setUser] = useState(null);
+  const [userEmail, setUserEmail] = useState(null);
+  const [isAdminPanelOpen, setIsAdminPanelOpen] = useState(false);
+
 
   const closeDialogs = () => {
     setIsSignInDialogOpen(false);
     setIsRegisterDialogOpen(false);
     setIsCartDialogOpen(false);
     setIsWishlistDialogOpen(false);
+  };
+  const closeAdminPanelDialog = () => {
+    setIsAdminPanelOpen(false);
   };
 
   const openSignInDialog = () => {
@@ -118,6 +60,31 @@ const MenuMobile = ({ onClose }) => {
     setIsWishlistDialogOpen(true);
   };
 
+  useEffect(() => {
+    checkAuthState((authUser) => {
+      setUser(authUser);
+      setUserEmail(authUser ? authUser.email : null);
+    });
+  }, []);
+
+  const checkAuthState = (callback) => {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        callback(user);
+      } else {
+        callback(null);
+      }
+    });
+  };
+
+  const signOut = async () => {
+    try {
+      await auth.signOut();
+      console.log("User signed out successfully!");
+    } catch (error) {
+      console.error("Error signing out:", error);
+    }
+  };
   return (
     <>
       <MenuContainer>
@@ -142,7 +109,7 @@ const MenuMobile = ({ onClose }) => {
                 <MenuItemContainer onClick={openAdminDialog}>
                   <AccountCircleIcon />
                   <MenuItemInfo>
-                    <MenuItemName>Admin Panel</MenuItemName>
+                    <MenuItemName>Account</MenuItemName>
                   </MenuItemInfo>
                 </MenuItemContainer>
               )}
@@ -184,6 +151,19 @@ const MenuMobile = ({ onClose }) => {
               </MenuItemName>
             </MenuItemInfo>
           </MenuItemContainer>
+          {currentUser ? (
+          <>
+            <MenuItemContainer onClick={signOut}>
+              <AccountCircleIcon />
+              <MenuItemInfo>
+                <MenuItemName>Sign Out</MenuItemName>
+              </MenuItemInfo>
+            </MenuItemContainer>
+          </>
+        ) : (
+         <div></div>
+        )}
+          
         </ListContainer>
       </MenuContainer>
 
@@ -200,8 +180,11 @@ const MenuMobile = ({ onClose }) => {
       </Dialog>
 
       <Dialog open={isAdminDialog} onClose={closeAdminDialog}>
-        {/* Placeholder for Admin Panel */}
-        <AdminPanel></AdminPanel>
+      {userEmail === "lamis@gmail.com" ? (
+            <AdminPanel onClose={closeAdminPanelDialog} isAdminPanel={true} />
+              ) : (
+            <AdminPanel onClose={closeAdminPanelDialog} isAdminPanel={false} />
+              )}
       </Dialog>
 
       <Dialog open={isWishlistDialogOpen} onClose={() => setIsWishlistDialogOpen(false)}>

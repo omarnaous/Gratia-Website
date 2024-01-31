@@ -5,11 +5,14 @@ import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import ProductCard from '../Components/media_card';
 import styled from 'styled-components';
-import { collection, getDocs } from "firebase/firestore";
 import { auth, db } from '../firebase';
 import { Link } from 'react-router-dom';
 import Navbar from '../Components/Navbar';
 import { useLocation } from 'react-router-dom';
+import { getDoc } from 'firebase/firestore';
+import { doc } from 'firebase/firestore';
+import { collection, getDocs } from "firebase/firestore";
+
 
 export default function ResponsiveProductsGrid() {
   const location = useLocation();
@@ -70,138 +73,154 @@ export default function ResponsiveProductsGrid() {
 
   const CardBox = styled(Box)``
 
-  const SearchCard = styled.div`
-  margin-left: 9%;
-  margin-right: 9%;
-  margin-top: 3%;
-  background: #f5f5f5; // Background color
-  border-radius: 5px; // Border radius
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); // Box shadow for the card effect
-  padding: 15px; // Padding to create spacing within the card
-  display: flex;
-  align-items: center;
-  @media only screen and (min-width: 320px) and (max-width: 479px){ 
-    margin:3%
-   }
 
-  @media only screen and (min-width: 480px) and (max-width: 767px){ 
-    margin:3%
-
-  }
-
-  @media only screen and (min-width: 768px) and (max-width: 991px){ 
-    margin:3%
-    
-  }
-`;
 
 
   const [productsData, setProductsData] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const inputRef = useRef(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const querySnapshot = await getDocs(collection(db, 'products'));
-        const data = [];
+        const docRef = doc(db, 'products', 'products');
+        const docSnap = await getDoc(docRef);
+  
+        // Check if the document exists
+        if (docSnap.exists()) {
+          const allProducts = docSnap.data().all;
+  
+          // Filter products based on category name (nameParam)
+          const filteredProducts = allProducts.filter(product => {
+            // Assuming each product has a 'category' property
+            return product.category.categoryName === nameParam;
+          });
 
-        querySnapshot.forEach((doc) => {
-          const productData = { id: doc.id, ...doc.data() };
-          if (productData.category.categoryName === nameParam) {
-            data.push(productData);
-          }
-        });
+          document.title = nameParam;
 
-        setProductsData(data);
+
+          setProductsData(filteredProducts);
+  
+          // Log the filtered products for debugging
+          console.log('Filtered Products:', filteredProducts);
+  
+          // Now you can use filteredProducts to set your state or perform other actions
+          // setProductsData(filteredProducts);
+          setLoading(false);
+        } else {
+          console.log('No data found for the specified document.');
+          setLoading(false);
+        }
       } catch (error) {
         console.error('Error fetching data:', error);
+        setLoading(false);
       }
     };
-
+  
     fetchData();
   }, [nameParam]);
+  
 
-  const handleFormSubmit = (e) => {
-    e.preventDefault(); // Prevent the default form submission behavior
+  // const cardStyle = {
+  //   // Common styles
+  //   marginTop: '3%',
+  //   background: '#f5f5f5',
+  //   width: '80vw',
+  //   borderRadius: '5px',
+  //   boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)', // Add a subtle box shadow
+  //   padding: '15px',
+  //   display: 'flex',
+  //   alignItems: 'center',
+  
+  //   // Media query for small screens
+  //   '@media only screen and (min-width: 480px) and (max-width: 767px)': {
+  //     width: '90vw',
+  //     flexDirection: 'column', // Stack items vertically on small screens
+  //   },
+  // };
+  
 
-    // Now, you can perform actions based on the submitted search term.
-    // For example, you can log it to the console or perform an API call.
-    console.log('Search term:', searchTerm);
 
-    // You can also use the search term to perform other actions, like filtering data.
-
-    // If you want to navigate to another page or perform some other action,
-    // you can do that here.
-  };
-
-  const cardStyle = {
-    margin: '0 auto', // Center horizontally
-    marginTop: '3%',
-    background: '#f5f5f5',
-    width: '80%',
-    borderRadius: '5px',
-    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)', // Add a subtle box shadow
-    padding: '15px',
-    display: 'flex',
-    alignItems: 'center',
-    '@media only screen and (min-width: 320px) and (max-width: 479px)': {
-      margin: '3%',
-    },
-    '@media only screen and (min-width: 480px) and (max-width: 767px)': {
-      margin: '3%',
-    },
-    '@media only screen and (min-width: 768px) and (max-width: 991px)': {
-      margin: '3%',
-    },
-  };
 
 
 
   return (
     <div>
       <Navbar />
-      <form onSubmit={handleFormSubmit}>
+      {/* <form onSubmit={handleFormSubmit}>
+   
         <input
           type="text"
           id="search"
           placeholder="ENTER SEARCH HERE..."
+          className='card'
           style={{
-            ...cardStyle,
+            // ...cardStyle,
+            width:"80%"
             border: 'none',
             outline: 'none',
-            // borderBottom: '1px solid #000', // Black border when active
           }}
           ref={inputRef}
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
-
-
-      </form>
+      </form> */}
 
       <ContainerBox>
         <ContentBox>
           <ThemeProvider theme={theme}>
-            <Grid container spacing={0}>
-              {productsData
-                .filter((product) =>
-                  product.productName.toLowerCase().includes(searchTerm.toLowerCase())
-                )
-                .map((product, index) => (
-                  <Grid item xs={12} sm={12} md={12} lg={12} xl={3} key={index}>
-                    <CardBox color="red">
-                      <Link to={`/Detail?index=${index}`}>
-                        <ProductCard image={product.images[0]} />
-                      </Link>
-                      <Title>{product.productName}</Title>
-                    </CardBox>
-                  </Grid>
-                ))}
-            </Grid>
+            {loading ? (
+              // Show loading indicator here
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  height: 'calc(100vh - 250px)',
+                }}
+              >
+                <h3>Loading...</h3>
+              </div>
+            ) : productsData.length === 0 ? (
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  height: 'calc(100vh - 250px)',
+                }}
+              >
+                <h3>Product Not found</h3>
+              </div>
+            ) : (
+              <Grid container spacing={0}>
+                {productsData
+                  .filter((product) =>
+                    product.productName.toLowerCase().includes(searchTerm.toLowerCase())
+                  )
+                  .map((product, index) => (
+                    <Grid item xs={12} sm={12} md={12} lg={12} xl={3} key={index}>
+                      <CardBox>
+                      <Link to={`/Detail?index=${index}&category=${nameParam}`}>
+                          <ProductCard image={product.images[0]} />
+                        </Link>
+                        <Title>{product.productName}</Title>
+                      </CardBox>
+                    </Grid>
+                  ))
+                }
+              </Grid>
+            )}
           </ThemeProvider>
         </ContentBox>
       </ContainerBox>
     </div>
   );
+
+
+
+
+
+
 }

@@ -5,6 +5,8 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingBag } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
+import { getDocs, collection } from 'firebase/firestore';
+import { db } from '../firebase';
 
 const cartKey = 'cartData'; // Key for storing cart data in local storage
 
@@ -156,16 +158,41 @@ const StyledLink = styled(Link)`
 const Cart = ({ onClose }) => {
   const [productsData, setProductsData] = useState([]);
 
+  const [selectedCode, setSelectedCode] = useState(localStorage.getItem('selectedCode') || "USD");
+
+  const [rate, setRate] = useState(0);
+
+
+
+
   useEffect(() => {
-    // Retrieve cart data from local storage
-    const cartData = localStorage.getItem(cartKey);
-    if (cartData) {
-      setProductsData(JSON.parse(cartData));
-    }
-  }, []); // This effect runs once when the component mounts
+    // Fetch currency rate
+    fetch(`https://api.currencyfreaks.com/v2.0/rates/latest?apikey=596b192be02d41e1b86c2d6a92e56801&symbols=${selectedCode}`)
+      .then((response) => response.json())
+      .then((data) => setRate(data.rates[selectedCode]));
+
+    // Fetch product data from Firestore
+    const fetchData = async () => {
+      try {
+     
+        const localData = JSON.parse(localStorage.getItem(cartKey)) || [];
+        setProductsData([...localData,]);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, [selectedCode]);
+
+
 
   // Calculate the total price of all products in the cart
-  const totalPrice = productsData.reduce((total, product) => total + parseFloat(product.product.productPrice), 0);
+  const totalPrice = productsData.reduce((total, product) => {
+    const productPrice = product && product.product ? parseFloat(product.product.productPrice) : 0;
+    return total + productPrice;
+  }, 0) * rate;
+
 
   const DeleteFunction = (product) => {
     // Remove the product from the productsData array
@@ -189,11 +216,22 @@ const Cart = ({ onClose }) => {
         ) : (
           productsData.map((product, index) => (
             <CardContainer key={index}>
-              <ProductImage src={product.product.images[0]} alt="" />
+              <ProductImage src={product && product.product && product.product.images && product.product.images[0] ? product.product.images[0] : ''} alt="" />
+
               <Row>
                 <ProductInfo>
-                  <ProductTitle>{product.product.productName}</ProductTitle>
-                  <ProductPrice>${product.product.productPrice}</ProductPrice>
+                  <ProductTitle>
+                    {product && product.product && product.product.productName
+                      ? product.product.productName
+                      : 'Product Name Not Available'}
+                  </ProductTitle>
+
+                  <ProductPrice>
+                    {product && product.product && product.product.productPrice
+                      ? `${selectedCode} ${(product.product.productPrice * rate).toFixed(0)}`
+                      : 'Product Price Not Available'}
+                  </ProductPrice>
+
                 </ProductInfo>
                 <DeleteButton onClick={() => DeleteFunction(product)}>
                   <DeleteIcon style={{ color: "black" }} />
@@ -205,7 +243,7 @@ const Cart = ({ onClose }) => {
       </ListContainer>
       <Row>
         <h3>Total</h3>
-        <h3>${totalPrice.toFixed(2)}</h3>
+        <h3>{selectedCode} {totalPrice.toFixed(0)}</h3>
       </Row>
       <StyledLink to="/Check">
         {productsData.length > 0 && <MaterialButton icon={faShoppingBag} name={`CHECKOUT $${totalPrice.toFixed(2)}`} width="100%" />}

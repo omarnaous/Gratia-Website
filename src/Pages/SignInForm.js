@@ -46,11 +46,12 @@ const CustomButton = styled.button`
   }
 `;
 
-const SignInForm = ({ open, onClose, isSignIn }) => {
+const SignInForm = ({ open, onClose }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [isSignIn, setIsSignIn] = useState(true);
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -60,34 +61,41 @@ const SignInForm = ({ open, onClose, isSignIn }) => {
     setPassword(event.target.value);
   };
 
-  const handleSubmit = async (event) => {
-  event.preventDefault();
-
-  try {
-    setLoading(true); // Start loading
-
-    if (isSignIn) {
-      await signInWithEmailAndPassword(auth, email, password);
-      const successMessage = `You have signed in successfully as ${email}`;
-      onclose();
-      window.alert(successMessage);
-    } else {
-      await createUserWithEmailAndPassword(auth, email, password);
-      const successMessage = `You have registered successfully as ${email}`;
-      window.alert(successMessage);
-    }
+  const handleToggleMode = () => {
+    setIsSignIn(!isSignIn);
     setError(null);
-    console.log(`Email: ${email}, Password: ${password}`);
+    setEmail(''); // Clear email field when switching modes
+    setPassword(''); // Clear password field when switching modes
+  };
 
-    // Close the dialog after successful sign-up/sign-in
-    onClose();
-  } catch (error) {
-    setError(error.message);
-  } finally {
-    setLoading(false); // Stop loading, whether it was a success or an error
-  }
-};
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
+    try {
+      setLoading(true); // Start loading
+
+      if (isSignIn) {
+        await signInWithEmailAndPassword(auth, email, password);
+        const successMessage = `You have signed in successfully as ${email}`;
+        onClose();
+        window.alert(successMessage);
+      } else {
+        await createUserWithEmailAndPassword(auth, email, password);
+        const successMessage = `You have registered successfully as ${email}`;
+        window.alert(successMessage);
+        setIsSignIn(true); 
+        onClose();
+      }
+      setError(null);
+      onClose();
+    } catch (error) {
+      setError(error.message);
+
+    } finally {
+      setLoading(false); // Stop loading, whether it was a success or an error
+      onClose();
+    }
+  };
 
   return (
     <div>
@@ -99,7 +107,7 @@ const SignInForm = ({ open, onClose, isSignIn }) => {
             marginBottom: '2vh',
           }}
         >
-          SIGN IN
+          {isSignIn ? 'SIGN IN' : 'REGISTER'}
         </h2>
         <TextField
           label="Email"
@@ -124,13 +132,21 @@ const SignInForm = ({ open, onClose, isSignIn }) => {
           required
         />
 
+
+
         <CustomButton type="submit" onClick={handleSubmit} disabled={loading}>
           {loading ? (
             <CircularProgress size={24} color="inherit" />
           ) : (
-            'Sign In'
+            isSignIn ? 'Sign In' : 'Register'
           )}
         </CustomButton>
+
+        <Typography variant="body2" color="primary" style={{ cursor: 'pointer', marginTop:"20px" ,color:"black" }} onClick={handleToggleMode}>
+          {isSignIn ? 'Don\'t have an account? Register here.' : 'Already have an account? Sign in here.'}
+        </Typography>
+
+        
       </FormContainer>
     </div>
   );

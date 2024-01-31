@@ -84,6 +84,7 @@ export default function CategoryGrid() {
 
         // Set the Firestore data in the state variable
         setCategoryData([...data].reverse());
+
         console.log(data);
       } catch (error) {
         console.error('Error fetching data:', error);

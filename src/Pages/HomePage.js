@@ -7,6 +7,8 @@ import styled, { keyframes } from 'styled-components';
 import Footer from '../Components/Footer';
 import { db } from '../firebase';
 import { doc, getDoc } from "firebase/firestore";
+import CurrencyDropdown from '../Components/currecnydrop';
+import { useNavigate } from 'react-router-dom';
 
 const zoomAnimation = keyframes`
   0% {
@@ -46,16 +48,18 @@ const Title = styled.h1`
 const HomePage = () => {
   const [showContent, setShowContent] = useState(false);
   const [bannerImage, setBannerImage] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setShowContent(true);
+      // After the timeout, navigate to another page (e.g., '/another-page')
+      navigate('/Home');
     }, 5000);
 
     return () => {
       clearTimeout(timer);
     };
-  }, []);
+  }, [navigate]);
 
   const fetchBanner = async () => {
     try {
@@ -106,18 +110,9 @@ const HomePage = () => {
 
   return (
     <HomePageContainer >
-      {!showContent ? (
         <FullScreenImage>
           <Title>GRATIA</Title>
         </FullScreenImage>
-      ) : (
-        <HomePageContainer>
-          <Navbar />
-          {bannerImage ? <Banner bannerImage={bannerImage} /> : null}
-          <CategoryGrid />
-          <Footer />
-        </HomePageContainer>
-      )}
     </HomePageContainer>
   );
 };
